@@ -243,7 +243,7 @@ function App() {
   return (
     <>
       <div
-        className="flex flex-col w-full h-full items-center bg-cover bg-fixed"
+        className="flex flex-col w-full h-full items-center bg-cover bg-center bg-fixed"
         style={{ backgroundImage: backgroundImageUrl }}
       >
         <img
