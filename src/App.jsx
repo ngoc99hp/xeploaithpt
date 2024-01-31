@@ -1,6 +1,7 @@
 import { useState, useReducer } from "react";
 import Logo from "./assets/xanhknen.png";
 import BackgroundImage from "./assets/anhnen.png";
+import BackgroundImage2 from "./assets/bg2.jpg";
 import TextInput from "./textInput";
 import Select from "react-select";
 
@@ -159,7 +160,8 @@ function calculateAverageScore(scores) {
 }
 
 function App() {
-  const backgroundImageUrl = `url(${BackgroundImage})`;
+  //const backgroundImageUrl = `url(${BackgroundImage})`;
+  const backgroundImageUrl = `url(${BackgroundImage2})`;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [province, setProvince] = useState();
   const [infor, dispatchInfor] = useReducer(reducer, {
@@ -243,7 +245,7 @@ function App() {
   return (
     <>
       <div
-        className="flex flex-col w-full h-full items-center bg-cover bg-fixed"
+        className="flex flex-col w-full h-full items-center bg-cover bg-fixed pb-[20px] bg-opacity-50"
         style={{ backgroundImage: backgroundImageUrl }}
       >
         <img
