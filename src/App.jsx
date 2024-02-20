@@ -245,20 +245,20 @@ function App() {
   return (
     <>
       <div
-        className="flex flex-col w-full h-full items-center bg-cover bg-fixed pb-[20px] bg-opacity-50"
+        className="flex flex-col w-full h-full items-center bg-cover bg-center bg-fixed pb-[20px]"
         style={{ backgroundImage: backgroundImageUrl }}
       >
         <img
           src={Logo}
           alt="logo"
-          className="w-1/5 object-contain mt-[40px] mb-[40px]"
+          className="w-[70%] sm:w-[60%] md:w-1/3 lg:w-1/4 object-contain my-[20px] sm:my-[40px]"
         />
-        <h1 className="text-4xl font-bold text-[#0083C2] mb-[40px]">
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-bold text-[#0083C2] mb-[40px]">
           XẾP HẠNG HỌC SINH THPT 2024
         </h1>
-        <div className="w-1/2 flex flex-col items-center border-solid border-2 border-neutral-300 rounded-lg p-[20px] gap-10 bg-white bg-opacity-90">
+        <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[70%] xl:w-1/2 flex flex-col items-center border-solid border-2 border-neutral-300 rounded-lg mx-[5px] p-[10px] md:p-[20px] gap-10 bg-white bg-opacity-90">
           {/* Thông tin cá nhân */}
-          <div className="w-full grid grid-cols-2 gap-[20px]">
+          <div className="w-full grid md:grid-cols-2 gap-[20px]">
             <TextInput
               label={"Họ và tên"}
               value={infor.name}
@@ -305,7 +305,7 @@ function App() {
               Điểm trung bình lớp 11
             </h3>
             {/* Điểm trung bình lớp 11 */}
-            <div className="w-full grid grid-cols-3 gap-[20px]">
+            <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
               <TextInput
                 label={"Toán"}
                 value={infor.toan11}
@@ -386,7 +386,7 @@ function App() {
               Điểm trung bình lớp 12 (HK1)
             </h3>
             {/* Điểm trung bình học kì 1 lớp 12 */}
-            <div className="w-full grid grid-cols-3 gap-[20px]">
+            <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
               <TextInput
                 label={"Toán"}
                 value={infor.toan12}
@@ -469,7 +469,7 @@ function App() {
           </button>
           {isModalOpen && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-              <div className="bg-white p-8 rounded-md max-w-md w-full relative">
+              <div className="bg-white p-8 rounded-md max-w-md w-full relative mx-[10px] sm:m-0">
                 <button
                   className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none"
                   onClick={closeModal}
