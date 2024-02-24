@@ -4,16 +4,20 @@ const TextInput = ({
   step,
   label,
   isRequire,
+  require,
   className,
   type,
   disable,
   id,
-  onChange
+  onChange,
+  min,
+  max
 }) => {
 
   return (
     <div className={` ${className ? className : ""} w-full relative `}>
       <input
+        required={require ? require : false}
         disabled={disable}
         autoComplete="off"
         type={type ? type : "text"}
@@ -25,6 +29,8 @@ const TextInput = ({
         value={value}
         step={step}
         onChange={onChange}
+        min={min}
+        max={max}
       />
       <label
         htmlFor={id}
@@ -43,4 +49,4 @@ const TextInput = ({
   );
 };
 
-export default TextInput;
+export default TextInput
