@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Logo from './assets/xanhknen.png'
 // import BackgroundImage from './assets/anhnen.png'
 import BackgroundImage2 from './assets/bg2.jpg'
 import TextInput from './textInput'
 import Select from 'react-select'
+
+import { getProvinceApi } from './apis/index'
 
 function App() {
   const dataMajors = [
@@ -119,13 +121,14 @@ function App() {
   const [whereInfoSchoolCheckbox, setWhereInfoSchoolCheckbox] = useState([])
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [province, setProvince] = useState()
+  const [province, setProvince] = useState('')
+  const [provinces, setProvinces] = useState([])
   const [infor, setInfor] = useState({
     // Thông tin cá nhân
     email: "",
     name: "",
     phoneNumber: "",
-    // province: "",
+    province: "",
     school: "",
     // Thông tin điểm số
     toan12hk1: "",
@@ -149,6 +152,13 @@ function App() {
     gdcd12hk2: ""
   })
 
+  useEffect(() => {
+    getProvinceApi()
+      .then(res => setProvinces(res.provinces_dkxt))
+  }, [])
+
+  console.log(province.value)
+
   const handleCheckBox = (name) => {
     setWhereInfoSchoolCheckbox(prev => {
       const isChecked = whereInfoSchoolCheckbox.includes(name)
@@ -166,6 +176,7 @@ function App() {
       email: infor.email,
       name: infor.name,
       phoneNumber: infor.phoneNumber,
+      province: province?.value,
       school: infor.school,
       // Điểm số HK1
       toan12hk1: infor.toan12hk1,
@@ -234,10 +245,10 @@ function App() {
                       valueContainer: () => "!p-[0_8px]",
                       menu: () => "!z-[11]"
                     }}
-                    // options={provinces.result.map((item) => ({
-                    //   value: item.code,
-                    //   label: item.name,
-                    // }))}
+                    options={provinces.map((item) => ({
+                      value: item.province_code,
+                      label: item.province_name
+                    }))}
                     value={province}
                     onChange={setProvince}
                   />
