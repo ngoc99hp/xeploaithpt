@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ModalInfoPersonal from './components/modalInfoPersonal'
 import Logo from './assets/xanhknen.png'
 // import BackgroundImage from './assets/anhnen.png'
 import BackgroundImage2 from './assets/bg2.jpg'
@@ -8,6 +9,15 @@ import Select from 'react-select'
 import { getProvinceApi } from './apis/index'
 
 function App() {
+  let tohop
+  const dataHocKi = [
+    {
+      name: "Học kỳ 1"
+    },
+    {
+      name: "Học kỳ 2"
+    }
+  ]
   const dataMajors = [
     {
       name: 'Công nghệ phần mềm'
@@ -85,6 +95,9 @@ function App() {
       name: 'Sinh viên đang học tại Trường'
     },
     {
+      name: 'Ngày hội hướng ngiệp 2024'
+    },
+    {
       name: 'Kênh khác'
     }
 
@@ -94,13 +107,9 @@ function App() {
       name: 'Xét theo học bạ THPT'
     },
     {
-      name: 'Xét kết hợp chứng chỉ tiếng Anh quốc tế với kết quả thi tốt nghiệp THPT năm 2024'
-    },
-    {
       name: 'Xét theo kết quả kỳ thi tốt nghiệp THPT 2024'
     }
   ]
-
   const dataCategory = [
     {
       name: 'Tốt nghiệp THPT năm 2024'
@@ -111,6 +120,8 @@ function App() {
   ]
   //const backgroundImageUrl = `url(${BackgroundImage})`
   const backgroundImageUrl = `url(${BackgroundImage2})`
+  // Học kỳ
+  const [hocKy, setHocKy] = useState(0)
   // Chuyên ngành đăng ký xét tuyển
   const [majorsRadio, setMajorsRadio] = useState(0)
   // Phương thức đăng ký xét tuyển
@@ -120,7 +131,7 @@ function App() {
   // Em biết thông tin cuẩ trường qua đâu
   const [whereInfoSchoolCheckbox, setWhereInfoSchoolCheckbox] = useState([])
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(true)
   const [province, setProvince] = useState('')
   const [provinces, setProvinces] = useState([])
   const [infor, setInfor] = useState({
@@ -128,9 +139,9 @@ function App() {
     email: "",
     name: "",
     phoneNumber: "",
-    province: "",
+    province: province?.value,
     school: "",
-    // Thông tin điểm số
+    // Thông tin điểm số HK1
     toan12hk1: "",
     ly12hk1: "",
     hoa12hk1: "",
@@ -140,70 +151,129 @@ function App() {
     dia12hk1: "",
     ta12hk1: "",
     gdcd12hk1: "",
-
-    toan12hk2: "",
-    ly12hk2: "",
-    hoa12hk2: "",
-    sinh12hk2: "",
-    van12hk2: "",
-    su12hk2: "",
-    dia12hk2: "",
-    ta12hk2: "",
-    gdcd12hk2: ""
+    // Thông tin điểm số HK2
+    // toan12hk2: "",
+    // ly12hk2: "",
+    // hoa12hk2: "",
+    // sinh12hk2: "",
+    // van12hk2: "",
+    // su12hk2: "",
+    // dia12hk2: "",
+    // ta12hk2: "",
+    // gdcd12hk2: ""
   })
 
-  useEffect(() => {
-    getProvinceApi()
-      .then(res => setProvinces(res.provinces_dkxt))
-  }, [])
+  // useEffect(() => {
+  //   getProvinceApi()
+  //     .then(res => setProvinces(res.provinces_dkxt))
+  // }, [])
 
-  console.log(province.value)
 
-  const handleCheckBox = (name) => {
-    setWhereInfoSchoolCheckbox(prev => {
-      const isChecked = whereInfoSchoolCheckbox.includes(name)
-      if (isChecked) {
-        return whereInfoSchoolCheckbox.filter(i => i !== name)
-      } else {
-        return [...prev, name]
-      }
-    })
+
+  const newData = {
+    // Thông tin cá nhân
+    email: infor.email,
+    name: infor.name,
+    phoneNumber: infor.phoneNumber,
+    province: infor.province,
+    school: infor.school,
+    // Điểm số HK1
+    toan12hk1: infor.toan12hk1,
+    ly12hk1: infor.ly12hk1,
+    hoa12hk1: infor.hoa12hk1,
+    sinh12hk1: infor.sinh12hk1,
+    van12hk1: infor.van12hk1,
+    su12hk1: infor.su12hk1,
+    dia12hk1: infor.dia12hk1,
+    ta12hk1: infor.ta12hk1,
+    gdcd12hk1: infor.gdcd12hk1,
+    // Điểm số HK2
+    toan12hk2: infor.toan12hk2,
+    ly12hk2: infor.ly12hk2,
+    hoa12hk2: infor.hoa12hk2,
+    sinh12hk2: infor.sinh12hk2,
+    van12hk2: infor.van12hk2,
+    su12hk2: infor.su12hk2,
+    dia12hk2: infor.dia12hk2,
+    ta12hk2: infor.ta12hk2,
+    gdcd12hk2: infor.gdcd12hk2,
+    // Khảo sát
+    majors: majorsRadio,
+    admissionMethod: admissionMethodRadio,
+    category: categoryRadio,
+    whereInfoSchool: whereInfoSchoolCheckbox
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newData = {
-      email: infor.email,
-      name: infor.name,
-      phoneNumber: infor.phoneNumber,
-      province: province?.value,
-      school: infor.school,
-      // Điểm số HK1
-      toan12hk1: infor.toan12hk1,
-      ly12hk1: infor.ly12hk1,
-      hoa12hk1: infor.hoa12hk1,
-      sinh12hk1: infor.sinh12hk1,
-      van12hk1: infor.van12hk1,
-      su12hk1: infor.su12hk1,
-      dia12hk1: infor.dia12hk1,
-      ta12hk1: infor.ta12hk1,
-      gdcd12hk1: infor.gdcd12hk1,
-      // Điểm số HK2
-      toan12hk2: infor.toan12hk2,
-      ly12hk2: infor.ly12hk2,
-      hoa12hk2: infor.hoa12hk2,
-      sinh12hk2: infor.sinh12hk2,
-      van12hk2: infor.van12hk2,
-      su12hk2: infor.su12hk2,
-      dia12hk2: infor.dia12hk2,
-      ta12hk2: infor.ta12hk2,
-      gdcd12hk2: infor.gdcd12hk2,
-      majors: majorsRadio,
-      admissionMethod: admissionMethodRadio,
-      category: categoryRadio,
-      whereInfoSchool: whereInfoSchoolCheckbox
+    const data = {
+      A00: +infor.toan12hk1 + +infor.ly12hk1 + +infor.hoa12hk1,
+      A01: +infor.toan12hk1 + +infor.ly12hk1 + +infor.ta12hk1,
+      A02: +infor.toan12hk1 + +infor.ly12hk1 + +infor.sinh12hk1,
+      A10: +infor.toan12hk1 + +infor.ly12hk1 + +infor.gdcd12hk1,
+
+      C00: +infor.van12hk1 + +infor.su12hk1 + +infor.dia12hk1,
+      C14: +infor.toan12hk1 + +infor.van12hk1 + +infor.gdcd12hk1,
+
+      D01: +infor.toan12hk1 + +infor.van12hk1 + +infor.ta12hk1,
+      D14: +infor.van12hk1 + +infor.su12hk1 + +infor.dia12hk1,
+      D15: +infor.van12hk1 + +infor.dia12hk1 + +infor.ta12hk1,
+      D66: +infor.toan12hk1 + +infor.ly12hk1 + +infor.hoa12hk1,
+      D84: +infor.van12hk1 + +infor.gdcd12hk1 + +infor.ta12hk1
     }
-    console.log(newData)
+
+    if ( majorsRadio === 0 || majorsRadio === 1 ) {
+      tohop = {
+        A00: data.A00,
+        A01: data.A01,
+        A10: data.A10,
+        D84: data.D84
+      }
+    } else if ( majorsRadio === 2 || majorsRadio === 3 || majorsRadio === 4 ) {
+      tohop = {
+        A00: data.A00,
+        A02: data.A02,
+        A10: data.A10,
+        D84: data.D84
+      }
+    } else if ( majorsRadio === 5 || majorsRadio === 6 || majorsRadio === 7 ) {
+      tohop = {
+        A00: data.A00,
+        D84: data.D84,
+        A02: data.A02,
+        C14: data.C14
+      }
+    } else if ( majorsRadio === 8 || majorsRadio === 9 || majorsRadio === 10 || majorsRadio === 11 ) {
+      tohop = {
+        A01: data.A01,
+        A00: data.A00,
+        C14: data.C14,
+        D01: data.D01
+      }
+    } else if ( majorsRadio === 12 || majorsRadio === 13 || majorsRadio === 14 || majorsRadio === 15 ) {
+      tohop = {
+        D01: data.D01,
+        D66: data.D66,
+        D14: data.D14,
+        D15: data.D15
+      }
+    } else if ( majorsRadio === 16 || majorsRadio === 17 ) {
+      tohop = {
+        C00: data.C00,
+        D01: data.D01,
+        D14: data.D14,
+        D66: data.D66
+      }
+    }
+
+    console.log("tohop", tohop)
+
+
+    console.log("Diem cac to hop mon", data)
+
+
+    console.log("thong tin da nhap", newData)
+    // setIsModalOpen(true)
   }
 
   return (
@@ -223,271 +293,236 @@ function App() {
           </h1>
           <form onSubmit={handleSubmit} className='w-[95%] sm:w-[90%] md:w-[85%] lg:w-[70%] xl:w-[80%] opacity-[97%]'>
             <div className="flex flex-col items-center border-solid border-2 border-neutral-300 rounded-lg p-[10px] md:p-[20px] bg-white bg-opacity-90">
-              {/* Thông tin cá nhân */}
-              <div className='w-full flex flex-col items-center'>
-                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-primary">
-                  Thông tin cá nhân
+              {/* Phương thức đăng ký xét tuyển */}
+              <div className='w-full flex flex-col xl:items-center select-none'>
+                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
+                  Phương thức đăng ký xét tuyển
                 </h3>
-                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-[20px]">
-                  <TextInput
-                    require
-                    label={"Họ và tên"}
-                    id={"Họ và tên"}
-                    value={infor.name}
-                    onChange ={(e) => setInfor({ ...infor, name: e.target.value })}
-                  />
-                  <Select
-                    placeholder="Tỉnh / Thành phố"
-                    className="text-black text-sm"
-                    classNames={{
-                      control: () => "!rounded-[5px]",
-                      input: () => "!pr-2.5 !pb-2.5 !pt-4 !m-0",
-                      valueContainer: () => "!p-[0_8px]",
-                      menu: () => "!z-[11]"
-                    }}
-                    options={provinces.map((item) => ({
-                      value: item.province_code,
-                      label: item.province_name
-                    }))}
-                    value={province}
-                    onChange={setProvince}
-                  />
-                  <TextInput
-                    require
-                    label={"Email"}
-                    id={"Email"}
-                    value={infor.email}
-                    onChange={(e) => setInfor({ ...infor, email: e.target.value })}
-                  />
-                  <TextInput
-                    require
-                    label={"Số điện thoại"}
-                    id={"Số điện thoại"}
-                    value={infor.phoneNumber}
-                    onChange={(e) => setInfor({ ...infor, phoneNumber: e.target.value })}
-                  />
-                  <TextInput
-                    require
-                    label={"Trường THPT"}
-                    id={"Trường THPT"}
-                    value={infor.school}
-                    onChange={(e) => setInfor({ ...infor, school: e.target.value })}
-                  />
-
+                <div className='text-gray-500'>
+                  {dataAdmissionMethod.map((i, ind) => (
+                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${ind === admissionMethodRadio ? 'text-primary' : ''} duration-200`}>
+                      <input className='w-4 h-4' type="radio" name={i.name} id={i.name}
+                        checked={ind === admissionMethodRadio}
+                        onChange={() => setAdmissionMethodRadio(ind)}
+                      />
+                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
+                    </div>
+                  ))}
                 </div>
+                <span className='block w-[70%] h-[1px] bg-primary mx-auto mt-5'></span>
               </div>
-              {/* Thông tin điểm số trung bình lớp 12 hk1*/}
-              <div className="w-full flex flex-col items-center">
-                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-primary">
-                  Điểm trung bình lớp 12 (HK1)
-                </h3>
-                {/* Điểm trung bình học kì 1 lớp 12 */}
-                <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
-                  <TextInput
-                    type={'number'}
-                    label={"Toán"}
-                    value={infor.toan12hk1}
-                    onChange={(e) => setInfor({ ...infor, toan12hk1: e.target.value })}
-                    id={"add_toan12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Lý"}
-                    value={infor.ly12hk1}
-                    onChange={(e) => setInfor({ ...infor, ly12hk1: e.target.value })}
-                    id={"add_ly12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Hoá"}
-                    value={infor.hoa12hk1}
-                    onChange={(e) => setInfor({ ...infor, hoa12hk1: e.target.value })}
-                    id={"add_hoa12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Sinh"}
-                    value={infor.sinh12hk1}
-                    onChange={(e) => setInfor({ ...infor, sinh12hk1: e.target.value })}
-                    id={"add_sinh12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Văn"}
-                    value={infor.van12hk1}
-                    onChange={(e) => setInfor({ ...infor, van12hk1: e.target.value })}
-                    id={"add_van12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Sử"}
-                    value={infor.su12hk1}
-                    onChange={(e) => setInfor({ ...infor, su12hk1: e.target.value })}
-                    id={"add_su12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Địa"}
-                    value={infor.dia12hk1}
-                    onChange={(e) => setInfor({ ...infor, dia12hk1: e.target.value })}
-                    id={"add_dia12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Tiếng Anh"}
-                    value={infor.ta12hk1}
-                    onChange={(e) => setInfor({ ...infor, ta12hk1: e.target.value })}
-                    id={"add_ta12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Giáo dục công dân"}
-                    value={infor.gdcd12hk1}
-                    onChange={(e) => setInfor({ ...infor, gdcd12hk1: e.target.value })}
-                    id={"add_gdcd12hk1"}
-                    min={'0'}
-                    max={'10'}
-                    require
-                  />
+              {/* Nhập điểm */}
+              <div className='w-full'>
+                <div className='text-gray-500 flex items-center justify-center gap-3'>
+                  {dataHocKi.map((i, ind) => (
+                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${ind === hocKy ? 'text-primary' : ''} duration-200`}>
+                      <input className='w-4 h-4' type="radio" name={i.name} id={i.name}
+                        checked={ind === hocKy}
+                        onChange={() => setHocKy(ind)}
+                      />
+                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
+                    </div>
+                  ))}
                 </div>
-              </div>
-              {/* Thông tin điểm số trung bình lớp 12 hk2*/}
-              <div className="w-full flex flex-col items-center">
-                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-primary">
-                  Điểm trung bình lớp 12 (HK2)
-                </h3>
-                {/* Điểm trung bình học kì 1 lớp 12 */}
-                <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
-                  <TextInput
-                    type={'number'}
-                    label={"Toán"}
-                    value={infor.toan12hk2}
-                    onChange={(e) => setInfor({ ...infor, toan12hk2: e.target.value })}
-                    id={"add_toan12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                {hocKy === 0 &&
+                  <div className="w-full flex flex-col items-center">
+                    <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-primary">
+                      Điểm trung bình lớp 12 (HK1)
+                    </h3>
+                    {/* Điểm trung bình học kì 1 lớp 12 */}
+                    <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
+                      <TextInput
+                        type={'number'}
+                        label={"Toán"}
+                        value={infor.toan12hk1}
+                        onChange={(e) => setInfor({ ...infor, toan12hk1: e.target.value })}
+                        id={"add_toan12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Lý"}
+                        value={infor.ly12hk1}
+                        onChange={(e) => setInfor({ ...infor, ly12hk1: e.target.value })}
+                        id={"add_ly12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Hoá"}
+                        value={infor.hoa12hk1}
+                        onChange={(e) => setInfor({ ...infor, hoa12hk1: e.target.value })}
+                        id={"add_hoa12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Sinh"}
+                        value={infor.sinh12hk1}
+                        onChange={(e) => setInfor({ ...infor, sinh12hk1: e.target.value })}
+                        id={"add_sinh12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Văn"}
+                        value={infor.van12hk1}
+                        onChange={(e) => setInfor({ ...infor, van12hk1: e.target.value })}
+                        id={"add_van12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Sử"}
+                        value={infor.su12hk1}
+                        onChange={(e) => setInfor({ ...infor, su12hk1: e.target.value })}
+                        id={"add_su12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Địa"}
+                        value={infor.dia12hk1}
+                        onChange={(e) => setInfor({ ...infor, dia12hk1: e.target.value })}
+                        id={"add_dia12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Tiếng Anh"}
+                        value={infor.ta12hk1}
+                        onChange={(e) => setInfor({ ...infor, ta12hk1: e.target.value })}
+                        id={"add_ta12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Giáo dục công dân"}
+                        value={infor.gdcd12hk1}
+                        onChange={(e) => setInfor({ ...infor, gdcd12hk1: e.target.value })}
+                        id={"add_gdcd12hk1"}
+                        min={'0'}
+                        max={'10'}
+                        require
+                      />
+                    </div>
+                  </div>
+                }
+                {hocKy === 1 &&
+                  <div className="w-full flex flex-col items-center">
+                    <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-primary">
+                      Điểm trung bình lớp 12 (HK2)
+                    </h3>
+                    {/* Điểm trung bình học kì 1 lớp 12 */}
+                    <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
+                      <TextInput
+                        type={'number'}
+                        label={"Toán"}
+                        value={infor.toan12hk2}
+                        onChange={(e) => setInfor({ ...infor, toan12hk2: e.target.value })}
+                        id={"add_toan12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Lý"}
-                    value={infor.ly12hk2}
-                    onChange={(e) => setInfor({ ...infor, ly12hk2: e.target.value })}
-                    id={"add_ly12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Lý"}
+                        value={infor.ly12hk2}
+                        onChange={(e) => setInfor({ ...infor, ly12hk2: e.target.value })}
+                        id={"add_ly12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Hoá"}
-                    value={infor.hoa12hk2}
-                    onChange={(e) => setInfor({ ...infor, hoa12hk2: e.target.value })}
-                    id={"add_hoa12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Hoá"}
+                        value={infor.hoa12hk2}
+                        onChange={(e) => setInfor({ ...infor, hoa12hk2: e.target.value })}
+                        id={"add_hoa12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Sinh"}
-                    value={infor.sinh12hk2}
-                    onChange={(e) => setInfor({ ...infor, sinh12hk2: e.target.value })}
-                    id={"add_sinh12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Sinh"}
+                        value={infor.sinh12hk2}
+                        onChange={(e) => setInfor({ ...infor, sinh12hk2: e.target.value })}
+                        id={"add_sinh12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    label={"Văn"}
-                    value={infor.van12hk2}
-                    onChange={(e) => setInfor({ ...infor, van12hk2: e.target.value })}
-                    id={"add_van12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        label={"Văn"}
+                        value={infor.van12hk2}
+                        onChange={(e) => setInfor({ ...infor, van12hk2: e.target.value })}
+                        id={"add_van12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Sử"}
-                    value={infor.su12hk2}
-                    onChange={(e) => setInfor({ ...infor, su12hk2: e.target.value })}
-                    id={"add_su12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Sử"}
+                        value={infor.su12hk2}
+                        onChange={(e) => setInfor({ ...infor, su12hk2: e.target.value })}
+                        id={"add_su12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Địa"}
-                    value={infor.dia12hk2}
-                    onChange={(e) => setInfor({ ...infor, dia12hk2: e.target.value })}
-                    id={"add_dia12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Địa"}
+                        value={infor.dia12hk2}
+                        onChange={(e) => setInfor({ ...infor, dia12hk2: e.target.value })}
+                        id={"add_dia12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Tiếng Anh"}
-                    value={infor.ta12hk2}
-                    onChange={(e) => setInfor({ ...infor, ta12hk2: e.target.value })}
-                    id={"add_ta12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Tiếng Anh"}
+                        value={infor.ta12hk2}
+                        onChange={(e) => setInfor({ ...infor, ta12hk2: e.target.value })}
+                        id={"add_ta12hk2"}
+                        min={'0'}
+                        max={'10'}
 
-                  />
-                  <TextInput
-                    type={'number'}
-                    label={"Giáo dục công dân"}
-                    value={infor.gdcd12hk2}
-                    onChange={(e) => setInfor({ ...infor, gdcd12hk2: e.target.value })}
-                    id={"add_gdcd12hk2"}
-                    min={'0'}
-                    max={'10'}
-                    require
-                  />
-                </div>
+                      />
+                      <TextInput
+                        type={'number'}
+                        label={"Giáo dục công dân"}
+                        value={infor.gdcd12hk2}
+                        onChange={(e) => setInfor({ ...infor, gdcd12hk2: e.target.value })}
+                        id={"add_gdcd12hk2"}
+                        min={'0'}
+                        max={'10'}
+                      />
+                    </div>
+                  </div>
+                }
               </div>
               {/* Chuyên ngành đăng ký xét tuyển */}
               <div className='w-full flex flex-col xl:items-center select-none' >
@@ -509,73 +544,31 @@ function App() {
                     </div>
                   ))}
                 </div>
-                <span className='block w-[70%] h-[1px] bg-primary mx-auto mt-5'></span>
               </div>
-              {/* Phương thức đăng ký xét tuyển */}
-              <div className='w-full flex flex-col xl:items-center select-none'>
-                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
-                  Phương thức đăng ký xét tuyển
-                </h3>
-                <div className='text-gray-500'>
-                  {dataAdmissionMethod.map((i, ind) => (
-                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${ind === admissionMethodRadio ? 'text-primary' : ''} duration-200`}>
-                      <input className='w-4 h-4' type="radio" name={i.name} id={i.name}
-                        checked={ind === admissionMethodRadio}
-                        onChange={() => setAdmissionMethodRadio(ind)}
-                      />
-                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
-                    </div>
-                  ))}
-                </div>
-                <span className='block w-[70%] h-[1px] bg-primary mx-auto mt-5'></span>
-              </div>
-              {/* Em là thí sinh */}
-              <div className='w-full flex flex-col xl:items-center select-none'>
-                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
-                  Em là thí sinh
-                </h3>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-x-5 text-gray-500'>
-                  {dataCategory.map((i, ind) => (
-                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${ind === categoryRadio ? 'text-primary' : ''} duration-200`}>
-                      <input className='w-4 h-4' type="radio" name={i.name} id={i.name}
-                        checked={ind === categoryRadio}
-                        onChange={() => setCategoryRadio(ind)}
-                      />
-                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
-                    </div>
-                  ))}
-                </div>
-                <span className='block w-[70%] h-[1px] bg-primary mx-auto mt-5'></span>
-              </div>
-              {/* Em biết thông tin của Trường qua đâu? */}
-              <div className='w-full flex flex-col xl:items-center select-none'>
-                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
-                  Em biết thông tin của Trường qua đâu?
-                </h3>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 text-gray-500'>
-                  {dataWhereInfoSchool.map((i, ind) => (
-                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${whereInfoSchoolCheckbox.includes(i.name) ? 'text-primary' : ''} duration-200`}>
-                      <input
-                        className='w-4 h-4'
-                        type="checkbox" name={i.name} id={i.name}
-                        checked={whereInfoSchoolCheckbox.includes(i.name)}
-                        onChange={() => handleCheckBox(i.name)}
-                      />
-                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
               <button
-                className="bg-primary text-white px-4 py-2 mt-3 rounded-md hover:bg-blue-600 focus:outline-none"
+                className="bg-[#0083C2] text-white px-4 py-2 mt-3 rounded-md hover:bg-blue-600 focus:outline-none"
                 type='submit'
               >
-                Hoàn thành
+                Xem kết quả
               </button>
             </div>
           </form>
         </div>
       </div>
+      {/* model info personal */}
+      {isModalInfoPersonal &&
+        <ModalInfoPersonal
+          infor={infor}
+          setInfor={setInfor}
+          dataCategory={dataCategory}
+          categoryRadio={categoryRadio}
+          setCategoryRadio={setCategoryRadio}
+          dataWhereInfoSchool={dataWhereInfoSchool}
+          whereInfoSchoolCheckbox={whereInfoSchoolCheckbox}
+          setWhereInfoSchoolCheckbox={setWhereInfoSchoolCheckbox}
+        />
+      }
     </>
   );
 }
