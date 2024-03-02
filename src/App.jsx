@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ModalInfoPersonal from './components/modalInfoPersonal'
+import ModalNotifi from './components/ModalNotifi'
 import Logo from './assets/xanhknen.png'
 // import BackgroundImage from './assets/anhnen.png'
 import BackgroundImage2 from './assets/bg2.jpg'
@@ -131,7 +132,8 @@ function App() {
   // Em biết thông tin cuẩ trường qua đâu
   const [whereInfoSchoolCheckbox, setWhereInfoSchoolCheckbox] = useState([])
 
-  const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(true)
+  const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(false)
+  const [isModalNotifi, setIsModalNotifi] = useState(false)
   const [province, setProvince] = useState('')
   const [provinces, setProvinces] = useState([])
   const [infor, setInfor] = useState({
@@ -167,7 +169,6 @@ function App() {
   //   getProvinceApi()
   //     .then(res => setProvinces(res.provinces_dkxt))
   // }, [])
-
 
 
   const newData = {
@@ -223,56 +224,54 @@ function App() {
     }
 
     if ( majorsRadio === 0 || majorsRadio === 1 ) {
-      tohop = {
-        A00: data.A00,
-        A01: data.A01,
-        A10: data.A10,
-        D84: data.D84
-      }
+      tohop = [
+        { A00: data.A00 },
+        { A01: data.A01 },
+        { A10: data.A10 },
+        { D84: data.D84 }
+      ]
     } else if ( majorsRadio === 2 || majorsRadio === 3 || majorsRadio === 4 ) {
-      tohop = {
-        A00: data.A00,
-        A02: data.A02,
-        A10: data.A10,
-        D84: data.D84
-      }
+      tohop = [
+        { A00: data.A00 },
+        { A02: data.A02 },
+        { A10: data.A10 },
+        { D84: data.D84 }
+      ]
     } else if ( majorsRadio === 5 || majorsRadio === 6 || majorsRadio === 7 ) {
-      tohop = {
-        A00: data.A00,
-        D84: data.D84,
-        A02: data.A02,
-        C14: data.C14
-      }
+      tohop = [
+        { A00: data.A00 },
+        { D84: data.D84 },
+        { A02: data.A02 },
+        { C14: data.C14 }
+      ]
     } else if ( majorsRadio === 8 || majorsRadio === 9 || majorsRadio === 10 || majorsRadio === 11 ) {
-      tohop = {
-        A01: data.A01,
-        A00: data.A00,
-        C14: data.C14,
-        D01: data.D01
-      }
+      tohop = [
+        { A01: data.A01 },
+        { A00: data.A00 },
+        { C14: data.C14 },
+        { D01: data.D01 }
+      ]
     } else if ( majorsRadio === 12 || majorsRadio === 13 || majorsRadio === 14 || majorsRadio === 15 ) {
-      tohop = {
-        D01: data.D01,
-        D66: data.D66,
-        D14: data.D14,
-        D15: data.D15
-      }
+      tohop = [
+        { D01: data.D01 },
+        { D66: data.D66 },
+        { D14: data.D14 },
+        { D15: data.D15 }
+      ]
     } else if ( majorsRadio === 16 || majorsRadio === 17 ) {
-      tohop = {
-        C00: data.C00,
-        D01: data.D01,
-        D14: data.D14,
-        D66: data.D66
-      }
+      tohop = [
+        { C00: data.C00 },
+        { D01: data.D01 },
+        { D14: data.D14 },
+        { D66: data.D66 }
+      ]
     }
 
     console.log("tohop", tohop)
 
-
     console.log("Diem cac to hop mon", data)
 
 
-    console.log("thong tin da nhap", newData)
     // setIsModalOpen(true)
   }
 
@@ -311,7 +310,6 @@ function App() {
                 </div>
                 <span className='block w-[70%] h-[1px] bg-primary mx-auto mt-5'></span>
               </div>
-
               {/* Nhập điểm */}
               <div className='w-full'>
                 <div className='text-gray-500 flex items-center justify-center gap-3'>
@@ -556,6 +554,12 @@ function App() {
           </form>
         </div>
       </div>
+      {/* model Notifi */}
+      {isModalNotifi &&
+        <ModalNotifi
+
+        />
+      }
       {/* model info personal */}
       {isModalInfoPersonal &&
         <ModalInfoPersonal
