@@ -2,40 +2,35 @@
 const TextInput = ({
   value,
   step,
-  dispatch,
   label,
   isRequire,
+  require,
   className,
   type,
-  action,
   disable,
   id,
-  parentIndex,
+  onChange,
+  min,
+  max
 }) => {
-  
+
   return (
     <div className={` ${className ? className : ""} w-full relative `}>
       <input
+        required={require ? require : false}
         disabled={disable}
         autoComplete="off"
         type={type ? type : "text"}
         id={id}
         className={`${
           disable ? "!bg-bordercl cursor-not-allowed" : ""
-        } block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-opacity-0 rounded-[5px] border-[1px] border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0  peer`}
+        } block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-opacity-0 rounded-[5px] border-[1px] border-gray-300 appearance-none focus:outline-none focus:ring-0  peer`}
         placeholder=""
         value={value}
         step={step}
-        onChange={(e) => {
-          if (typeof action === "function") {
-            action(e.target.value);
-          } else {
-            dispatch({
-              type: action,
-              payload: { value: e.target.value, parentIndex },
-            });
-          }
-        }}
+        onChange={onChange}
+        min={min}
+        max={max}
       />
       <label
         htmlFor={id}
@@ -54,4 +49,4 @@ const TextInput = ({
   );
 };
 
-export default TextInput;
+export default TextInput
