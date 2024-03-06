@@ -10,7 +10,7 @@ import Select from 'react-select'
 import { getProvinceApi } from './apis/index'
 
 function App() {
-  let tohop
+  let tohop = []
   const dataHocKi = [
     {
       name: "Học kỳ 1"
@@ -224,50 +224,56 @@ function App() {
     }
 
     if ( majorsRadio === 0 || majorsRadio === 1 ) {
-      tohop = [
-        { A00: data.A00 },
-        { A01: data.A01 },
-        { A10: data.A10 },
-        { D84: data.D84 }
-      ]
+      tohop = {
+        A00: data.A00,
+        A01: data.A01,
+        A10: data.A10,
+        D84: data.D84
+      }
     } else if ( majorsRadio === 2 || majorsRadio === 3 || majorsRadio === 4 ) {
-      tohop = [
-        { A00: data.A00 },
-        { A02: data.A02 },
-        { A10: data.A10 },
-        { D84: data.D84 }
-      ]
+      tohop = {
+        A00: data.A00,
+        A02: data.A02,
+        A10: data.A10,
+        D84: data.D84
+      }
     } else if ( majorsRadio === 5 || majorsRadio === 6 || majorsRadio === 7 ) {
-      tohop = [
-        { A00: data.A00 },
-        { D84: data.D84 },
-        { A02: data.A02 },
-        { C14: data.C14 }
-      ]
+      tohop = {
+        A00: data.A00,
+        D84: data.D84,
+        A02: data.A02,
+        C14: data.C14
+      }
     } else if ( majorsRadio === 8 || majorsRadio === 9 || majorsRadio === 10 || majorsRadio === 11 ) {
-      tohop = [
-        { A01: data.A01 },
-        { A00: data.A00 },
-        { C14: data.C14 },
-        { D01: data.D01 }
-      ]
+      tohop = {
+        A01: data.A01,
+        A00: data.A00,
+        C14: data.C14,
+        D01: data.D01
+      }
     } else if ( majorsRadio === 12 || majorsRadio === 13 || majorsRadio === 14 || majorsRadio === 15 ) {
-      tohop = [
-        { D01: data.D01 },
-        { D66: data.D66 },
-        { D14: data.D14 },
-        { D15: data.D15 }
-      ]
+      tohop = {
+        D01: data.D01,
+        D66: data.D66,
+        D14: data.D14,
+        D15: data.D15
+      }
     } else if ( majorsRadio === 16 || majorsRadio === 17 ) {
-      tohop = [
-        { C00: data.C00 },
-        { D01: data.D01 },
-        { D14: data.D14 },
-        { D66: data.D66 }
-      ]
+      tohop = {
+        C00: data.C00,
+        D01: data.D01,
+        D14: data.D14,
+        D66: data.D66
+      }
     }
 
+
     console.log("tohop", tohop)
+    const value = Object.values(tohop)
+
+    if (value.some(i => i >= 15)) {
+      setIsModalNotifi(true)
+    }
 
     console.log("Diem cac to hop mon", data)
 
@@ -331,7 +337,7 @@ function App() {
                     {/* Điểm trung bình học kì 1 lớp 12 */}
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
                       <TextInput
-                        type={'number'}
+                        // type={'number'}
                         label={"Toán"}
                         value={infor.toan12hk1}
                         onChange={(e) => setInfor({ ...infor, toan12hk1: e.target.value })}
@@ -544,12 +550,9 @@ function App() {
                 </div>
               </div>
 
-              <button
-                className="bg-[#0083C2] text-white px-4 py-2 mt-3 rounded-md hover:bg-blue-600 focus:outline-none"
-                type='submit'
-              >
-                Xem kết quả
-              </button>
+              <div className='w-full flex items-center justify-center mt-5'>
+                <button type='submit' className='px-4 py-2 bg-[#0083C2] text-black rounded-md'>Xem kết quả</button>
+              </div>
             </div>
           </form>
         </div>
@@ -557,7 +560,9 @@ function App() {
       {/* model Notifi */}
       {isModalNotifi &&
         <ModalNotifi
-
+          tohop={tohop}
+          isModalNotifi={isModalNotifi}
+          setIsModalNotifi={setIsModalNotifi}
         />
       }
       {/* model info personal */}
