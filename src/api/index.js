@@ -1,11 +1,11 @@
 import axios from "axios"
 
 export const getProvinceApi = async () => {
-  const res = await axios.get(import.meta.env.VITE_GET_PROVINCE)
+  const res = await axios.get(import.meta.env.VITE_GET_PROVINCES)
   return res.data
-};
+}
 
-export const getMajor = async () => {
+export const getMajorApi = async () => {
   const res = await axios.get(import.meta.env.VITE_GET_MAJOR)
   return res.data
-};
+}

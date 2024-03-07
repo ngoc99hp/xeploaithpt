@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import ModalInfoPersonal from "./components/modalInfoPersonal"
 import ModalNotifi from "./components/ModalNotifi"
+import ModalNotifiEmail from "./components/ModalNotifiEmail"
+
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
 import BackgroundImage2 from "./assets/bg2.jpg"
 import TextInput from "./textInput"
-// import Select from "react-select"
 
-import { getProvinceApi, getMajor } from "./api/index"
+import { getMajorApi } from "./api/index"
 import { useDispatch} from "react-redux"
 import { update } from './redux/infoPointSlice'
 
@@ -21,66 +21,31 @@ function App() {
     }
   ]
 
-  const dataWhereInfoSchool = [
-    {
-      name: "Website của nhà trường"
-    },
-    {
-      name: "Facebook"
-    },
-    {
-      name: "Tiktok"
-    },
-    {
-      name: "Người thân, bạn bè"
-    },
-    {
-      name: "Cựu sinh viên của Trường"
-    },
-    {
-      name: "Sinh viên đang học tại Trường"
-    },
-    {
-      name: "Ngày hội hướng ngiệp 2024"
-    },
-    {
-      name: "Kênh khác"
-    }
-  ]
+
   const dataAdmissionMethod = [
     {
       name: "Xét theo học bạ THPT"
     },
-    {
-      name: "Xét theo kết quả kỳ thi tốt nghiệp THPT 2024"
-    }
+    // {
+    //   name: "Xét theo kết quả kỳ thi tốt nghiệp THPT 2024"
+    // }
   ]
-  const dataCategory = [
-    {
-      name: "Tốt nghiệp THPT năm 2024"
-    },
-    {
-      name: "Thí sinh tự do"
-    }
-  ]
-
 
   //const backgroundImageUrl = `url(${BackgroundImage})`
   const backgroundImageUrl = `url(${BackgroundImage2})`
   const dispatch = useDispatch()
   // Học kỳ
   const [hocKy, setHocKy] = useState(0)
+  // ID ngành
   const [categoryInd, setCategoryInd] = useState(0)
+  // ID chuyên ngành
   const [majorInd, setMajorInd] = useState(0)
 
   // Phương thức đăng ký xét tuyển
   const [admissionMethodRadio, setAdmissionMethodRadio] = useState(0)
-  // Em là thí sinh
-  const [categoryRadio, setCategoryRadio] = useState(0)
-  // Em biết thông tin cuẩ trường qua đâu
-  const [whereInfoSchoolCheckbox, setWhereInfoSchoolCheckbox] = useState([])
 
-  const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(false)
+
+  const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(true)
   const [isModalNotifi, setIsModalNotifi] = useState(false)
 
   const [province, setProvince] = useState("")
@@ -117,10 +82,11 @@ function App() {
   //Danh sách các chuyên ngành
   const [majorData, setMajorData] = useState()
   useEffect(() => {
-    getMajor().then((res) => setMajorData(res.result))
+    getMajorApi().then((res) => setMajorData(res.result))
   }, [])
 
-  // console.log("Danh sách chuyên ngành :", majorData)
+
+  // console.log("Danh sách chuyên ngành :", majorData) 
 
   //Tính điểm tổ hợp
   const [diemtohop, setDiemtohop] = useState([])
@@ -253,14 +219,13 @@ function App() {
 
   }
 
-  // console.log("điểm của chuyên ngành đã chọn: ", numMajor)
   const handleSubmit = (e) => {
     e.preventDefault()
     const numMajorUpdated = majorData[categoryInd].majors[
       majorInd
     ].tohop.map((item) => {
       const diemtohopItem = diemtohop.find(
-        (el) => el.code === item.combination.code
+        (el) => el.code === item.combination.code && el.ki === hocKy + 1
       )
       return {
         ki: diemtohopItem.ki,
@@ -268,6 +233,7 @@ function App() {
         diem: diemtohopItem ? diemtohopItem.num : 0
       }
     })
+
     const data = {
       chuyenNganh: majorData[categoryInd].majors[
         majorInd
@@ -282,17 +248,18 @@ function App() {
   return (
     <>
       <div
-        className="h-[100vh] bg-cover bg-center bg-fixed pb-[20px]"
+        className="relative h-[100vh] bg-cover bg-center bg-fixed pb-[20px]"
         style={{ backgroundImage: backgroundImageUrl }}
       >
+        <div className="absolute inset-0 backdrop-blur-sm"></div>
         <div className="flex flex-col w-full h-full items-center overflow-y-auto">
           <img
             src={Logo}
             alt="logo"
-            className="w-[70%] sm:w-[60%] md:w-1/3 lg:w-1/4 object-contain my-[20px] sm:my-[40px]"
+            className="w-[70%] sm:w-[60%] md:w-1/3 lg:w-1/4 object-contain my-[20px] sm:my-[40px] z-[1]"
           />
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-bold text-primary mb-[40px]">
-            XẾP HẠNG HỌC SINH THPT 2024
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-bold text-primary mb-[40px] z-[1]">
+            ĐĂNG KÝ XÉT TUYỂN ĐẠI HỌC 2024
           </h1>
           <form
             onSubmit={handleSubmit}
@@ -593,12 +560,12 @@ function App() {
                 {majorData?.map((category, categoryIndex) => (
                   <div
                     key={category.code}
-                    className="flex flex-col w-full gap-3"
+                    className="flex flex-col w-full gap-2 py-3"
                   >
-                    <h4>{category.name}</h4>
+                    <h4 className="text-lg">{category.name} :</h4>
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-5 text-gray-500 pl-[20px]">
                       {category.majors?.map((major, majorIndex) => (
-                        <div key={major.id}>
+                        <div key={major.id} className="flex items-center gap-1">
                           <input
                             className="w-4 h-4"
                             type="radio"
@@ -630,19 +597,7 @@ function App() {
       </div>
       {/* model Notifi */}
       {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi}/>}
-      {/* model info personal */}
-      {/* {isModalInfoPersonal && (
-        <ModalInfoPersonal
-          infor={infor}
-          setInfor={setInfor}
-          dataCategory={dataCategory}
-          categoryRadio={categoryRadio}
-          setCategoryRadio={setCategoryRadio}
-          dataWhereInfoSchool={dataWhereInfoSchool}
-          whereInfoSchoolCheckbox={whereInfoSchoolCheckbox}
-          setWhereInfoSchoolCheckbox={setWhereInfoSchoolCheckbox}
-        />
-      )} */}
+      {/* <ModalNotifiEmail/> */}
     </>
   )
 }
