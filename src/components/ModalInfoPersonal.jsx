@@ -89,15 +89,39 @@ const ModalInfoPersonal = (props) => {
       school: infor.school,
       whereInfoSchool: whereInfoSchoolCheckbox
     }
-    dispatch(update(data))
+    const dataInsert = {
+      objects: {
+        name: infor.name,
+        phone: infor.phoneNumber,
+        province_code: province.value,
+        email: infor.email,
+        school: infor.school,
+        type_id: categoryRadio,
+        major_id: infoPoint.chuyenNganh,
+        scores: {
+          data: [
+            {
+              "subject_id": 1,
+              "batch_id": 1,
+              "score": 10
+            },
+            {
+              "subject_id": 2,
+              "batch_id": 1,
+              "score": 10
+            }
+          ]
+        }
+      }
+    }
     setIsModalNotifiEmail(true)
     console.log(data)
     console.log(infoPoint)
   }
   return (
     <>
-      <div id="static-modal" data-modal-backdrop="static" tabIndex="-1" aria-hidden="true" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-[#1e1e1e6f]">
-        <div className="relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-full max-w-[70%] max-h-full">
+      <div id="static-modal" data-modal-backdrop="static" tabIndex="-1" aria-hidden="true" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 px-2 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-[#1e1e1e6f]">
+        <div className="relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-full xl:max-w-[70%] max-h-full">
           {/* <!-- Modal content --> */}
           <div className="relative w-full p-5 bg-white rounded-lg shadow">
             <button onClick={() => setIsModalInfoPersonal(false)} type="button" className="w-8 h-8 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm ms-auto flex justify-center items-center" data-modal-hide="default-modal">
@@ -195,8 +219,8 @@ const ModalInfoPersonal = (props) => {
                 ))}
               </div>
             </div>
-            <div className='w-full flex items-center justify-center mt-5'>
-              <button onClick={handleSubmit} className='px-4 py-2 bg-[#0083C2] text-white rounded-md'>Hoàn thành</button>
+            <div className='w-full  flex items-center justify-center mt-5'>
+              <button onClick={handleSubmit} className='w-full sm:w-auto px-4 py-2 bg-[#0083C2] text-white rounded-md'>Hoàn thành</button>
             </div>
           </div>
         </div>

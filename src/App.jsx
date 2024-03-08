@@ -45,18 +45,10 @@ function App() {
   const [admissionMethodRadio, setAdmissionMethodRadio] = useState(0)
 
 
-  const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(true)
+  // const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(true)
   const [isModalNotifi, setIsModalNotifi] = useState(false)
 
-  const [province, setProvince] = useState("")
-  const [provinces, setProvinces] = useState([])
   const [infor, setInfor] = useState({
-    // Thông tin cá nhân
-    email: "",
-    name: "",
-    phoneNumber: "",
-    province: province?.value,
-    school: "",
     // Thông tin điểm số HK1
     toanhk1: "",
     lyhk1: "",
@@ -225,7 +217,20 @@ function App() {
       majorInd
     ].tohop.map((item) => {
       const diemtohopItem = diemtohop.find(
-        (el) => el.code === item.combination.code && el.ki === hocKy + 1
+        (el) => el.code === item.combination.code && el.ki === 1
+      )
+      return {
+        ki: diemtohopItem.ki,
+        tohop: item.combination.code,
+        diem: diemtohopItem ? diemtohopItem.num : 0
+      }
+    })
+
+    const numMajorUpdated2 = majorData[categoryInd].majors[
+      majorInd
+    ].tohop.map((item) => {
+      const diemtohopItem = diemtohop.find(
+        (el) => el.code === item.combination.code && el.ki === 2
       )
       return {
         ki: diemtohopItem.ki,
@@ -238,7 +243,8 @@ function App() {
       chuyenNganh: majorData[categoryInd].majors[
         majorInd
       ].name,
-      num: numMajorUpdated
+      num: numMajorUpdated,
+      num2: numMajorUpdated2
     }
     dispatch(update(data))
     setIsModalNotifi(true)
@@ -563,7 +569,7 @@ function App() {
                     className="flex flex-col w-full gap-2 py-3"
                   >
                     <h4 className="text-lg">{category.name} :</h4>
-                    <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-5 text-gray-500 pl-[20px]">
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 text-gray-500 pl-[20px]">
                       {category.majors?.map((major, majorIndex) => (
                         <div key={major.id} className="flex items-center gap-1">
                           <input
@@ -587,8 +593,9 @@ function App() {
                   </div>
                 ))}
               </div>
-
-              <button type="submit" className="bg-[#0083C2] text-black px-4 py-2 mt-3 rounded-md hover:bg-blue-600 focus:outline-none">
+              <button
+                type="submit"
+                className="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-3 text-center dark:bg-primary/80 dark:hover:bg-primary">
                 Xem kết quả
               </button>
             </div>
