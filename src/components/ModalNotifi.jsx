@@ -20,7 +20,7 @@ const ModalNotifi = (props) => {
         aria-hidden="true"
         className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 px-2 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-[#1e1e1e6f]"
       >
-        <div className="relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-full xl:max-w-[40%] max-h-full">
+        <div className="relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-full sm:max-w-[80%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] max-h-full">
           {/* <!-- Modal content --> */}
           <div className="relative bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}

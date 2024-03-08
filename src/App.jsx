@@ -87,124 +87,120 @@ function App() {
       {
         ki: 1,
         code: "A00",
-        num: +infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "A01",
-        num: +infor.toanhk1 + +infor.lyhk1 + +infor.tahk1
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "A02",
-        num: +infor.toanhk1 + +infor.lyhk1 + +infor.tahk1
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "A10",
-        num: +infor.toanhk1 + +infor.lyhk1 + +infor.gdcdhk1
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.gdcdhk1).toFixed(2)
       },
       {
         ki: 1,
         code: "C00",
-        num: +infor.vanhk1 + +infor.suhk1 + +infor.diahk1
+        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "C14",
-        num: +infor.toanhk1 + +infor.vanhk1 + +infor.gdcdhk1
+        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.gdcdhk1).toFixed(2)
       },
       {
         ki: 1,
         code: "D01",
-        num: +infor.toanhk1 + +infor.vanhk1 + +infor.tahk1
+        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.tahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "D14",
-        num: +infor.vanhk1 + +infor.suhk1 + +infor.diahk1
+        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "D15",
-        num: +infor.vanhk1 + +infor.diahk1 + +infor.tahk1
+        num: (+infor.vanhk1 + +infor.diahk1 + +infor.tahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "D66",
-        num: +infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2)
       },
       {
         ki: 1,
         code: "D84",
-        num: +infor.vanhk1 + +infor.gdcdhk1 + +infor.tahk1
+        num: (+infor.vanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2)
       },
       {
         ki: 2,
         code: "A00",
-        num: +infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "A01",
-        num: +infor.toanhk2 + +infor.lyhk2 + +infor.tahk2
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "A02",
-        num: +infor.toanhk2 + +infor.lyhk2 + +infor.tahk2
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "A10",
-        num: +infor.toanhk2 + +infor.lyhk2 + +infor.gdcdhk2
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.gdcdhk2).toFixed(2)
       },
       {
         ki: 2,
         code: "C00",
-        num: +infor.vanhk2 + +infor.suhk2 + +infor.diahk2
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "C14",
-        num: +infor.toanhk2 + +infor.vanhk2 + +infor.gdcdhk2
+        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.gdcdhk2).toFixed(2)
       },
       {
         ki: 2,
         code: "D01",
-        num: +infor.toanhk2 + +infor.vanhk2 + +infor.tahk2
+        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.tahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "D14",
-        num: +infor.vanhk2 + +infor.suhk2 + +infor.diahk2
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "D15",
-        num: +infor.vanhk2 + +infor.diahk2 + +infor.tahk2
+        num: (+infor.vanhk2 + +infor.diahk2 + +infor.tahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "D66",
-        num: +infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2)
       },
       {
         ki: 2,
         code: "D84",
-        num: +infor.vanhk2 + +infor.gdcdhk2 + +infor.tahk2
+        num: (+infor.vanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2)
       }
     ])
   }, [infor, majorData])
-  // console.log(diemtohop)
 
   const [selectedMajor, setSelectedMajor] = useState({ 0:0 })
 
   const handleMajorSelection = (categoryIndex, majorIndex) => {
-    // setSelectedMajor((prevState) => ({
-    //   ...prevState,
-    //   [categoryIndex]: majorIndex
-    // }))
+
     setSelectedMajor({ [categoryIndex]: majorIndex })
     setCategoryInd(categoryIndex)
     setMajorInd(majorIndex)
@@ -240,11 +236,79 @@ function App() {
     })
 
     const data = {
+      idChuyenNganh: majorData[categoryInd].majors[
+        majorInd
+      ].id,
       chuyenNganh: majorData[categoryInd].majors[
         majorInd
       ].name,
       num: numMajorUpdated,
-      num2: numMajorUpdated2
+      num2: numMajorUpdated2,
+      point: {
+        toan: {
+          id: 1,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.toanhk1,
+          diemhk2: infor.toanhk2
+        },
+        ly: {
+          id: 2,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.lyhk1,
+          diemhk2: infor.lyhk2
+        },
+        hoa: {
+          id: 3,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.hoahk1,
+          diemhk2: infor.hoahk2
+        },
+        sinh: {
+          id: 4,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.sinhhk1,
+          diemhk2: infor.sinhhk2
+        },
+        van: {
+          id: 5,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.vanhk1,
+          diemhk2: infor.vanhk2
+        },
+        su: {
+          id: 6,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.suhk1,
+          diemhk2: infor.suhk2
+        },
+        dia: {
+          id: 7,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.diahk1,
+          diemhk2: infor.diahk2
+        },
+        ta: {
+          id: 8,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.tahk1,
+          diemhk2: infor.tahk2
+        },
+        gdcd: {
+          id: 9,
+          ki1: 1,
+          ki2: 2,
+          diemhk1: infor.gdcdhk1,
+          diemhk2: infor.gdcdhk2
+        }
+      }
     }
     dispatch(update(data))
     setIsModalNotifi(true)
@@ -339,7 +403,7 @@ function App() {
                     {/* Điểm trung bình học kì 1 lớp  */}
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Toán"}
                         value={infor.toanhk1}
                         onChange={(e) =>
@@ -351,7 +415,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Lý"}
                         value={infor.lyhk1}
                         onChange={(e) =>
@@ -363,7 +427,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Hoá"}
                         value={infor.hoahk1}
                         onChange={(e) =>
@@ -375,7 +439,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Sinh"}
                         value={infor.sinhhk1}
                         onChange={(e) =>
@@ -387,7 +451,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Văn"}
                         value={infor.vanhk1}
                         onChange={(e) =>
@@ -399,7 +463,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Sử"}
                         value={infor.suhk1}
                         onChange={(e) =>
@@ -411,7 +475,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Địa"}
                         value={infor.diahk1}
                         onChange={(e) =>
@@ -423,7 +487,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Tiếng Anh"}
                         value={infor.tahk1}
                         onChange={(e) =>
@@ -435,7 +499,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Giáo dục công dân"}
                         value={infor.gdcdhk1}
                         onChange={(e) =>
@@ -457,7 +521,7 @@ function App() {
                     {/* Điểm trung bình học kì 1 lớp  */}
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Toán"}
                         value={infor.toanhk2}
                         onChange={(e) =>
@@ -468,7 +532,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Lý"}
                         value={infor.lyhk2}
                         onChange={(e) =>
@@ -479,7 +543,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Hoá"}
                         value={infor.hoahk2}
                         onChange={(e) =>
@@ -490,7 +554,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Sinh"}
                         value={infor.sinhhk2}
                         onChange={(e) =>
@@ -511,7 +575,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Sử"}
                         value={infor.suhk2}
                         onChange={(e) =>
@@ -522,7 +586,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Địa"}
                         value={infor.diahk2}
                         onChange={(e) =>
@@ -533,7 +597,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Tiếng Anh"}
                         value={infor.tahk2}
                         onChange={(e) =>
@@ -544,7 +608,7 @@ function App() {
                         max={"10"}
                       />
                       <TextInput
-                        type={"number"}
+                        type={"text"}
                         label={"Giáo dục công dân"}
                         value={infor.gdcdhk2}
                         onChange={(e) =>
