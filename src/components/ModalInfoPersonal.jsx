@@ -82,115 +82,143 @@ const ModalInfoPersonal = (props) => {
   console.log(province)
 
   const handleSubmit = () => {
-    const dataInsert = {
-      objects: {
-        name: infor.name,
-        phone: infor.phoneNumber,
-        province_code: province.value,
-        email: infor.email,
-        school: infor.school,
-        type_id: categoryRadio,
-        major_id: infoPoint.idChuyenNganh,
-        scores: {
-          data: [
-            {
-              subject_id: 1,
-              batch_id: 1,
-              score: infoPoint.point.toan.diemhk1
-            },
-            {
-              subject_id: 1,
-              batch_id: 2,
-              score: infoPoint.point.toan.diemhk2
-            },
-            {
-              subject_id: 2,
-              batch_id: 1,
-              score: infoPoint.point.ly.diemhk1
-            },
-            {
-              subject_id: 2,
-              batch_id: 2,
-              score: infoPoint.point.ly.diemhk2
-            },
-            {
-              subject_id: 3,
-              batch_id: 1,
-              score: infoPoint.point.hoa.diemhk1
-            },
-            {
-              subject_id: 3,
-              batch_id: 2,
-              score: infoPoint.point.hoa.diemhk2
-            },
-            {
-              subject_id: 4,
-              batch_id: 1,
-              score: infoPoint.point.sinh.diemhk1
-            },
-            {
-              subject_id: 4,
-              batch_id: 2,
-              score: infoPoint.point.sinh.diemhk2
-            },
-            {
-              subject_id: 5,
-              batch_id: 1,
-              score: infoPoint.point.van.diemhk1
-            },
-            {
-              subject_id: 5,
-              batch_id: 2,
-              score: infoPoint.point.van.diemhk2
-            },
-            {
-              subject_id: 6,
-              batch_id: 1,
-              score: infoPoint.point.su.diemhk1
-            },
-            {
-              subject_id: 6,
-              batch_id: 2,
-              score: infoPoint.point.su.diemhk2
-            },
-            {
-              subject_id: 7,
-              batch_id: 1,
-              score: infoPoint.point.dia.diemhk1
-            },
-            {
-              subject_id: 7,
-              batch_id: 2,
-              score: infoPoint.point.dia.diemhk2
-            },
-            {
-              subject_id: 8,
-              batch_id: 1,
-              score: infoPoint.point.ta.diemhk1
-            },
-            {
-              subject_id: 8,
-              batch_id: 2,
-              score: infoPoint.point.ta.diemhk2
-            },
-            {
-              subject_id: 9,
-              batch_id: 1,
-              score: infoPoint.point.gdcd.diemhk1
-            },
-            {
-              subject_id: 9,
-              batch_id: 2,
-              score: infoPoint.point.gdcd.diemhk2
-            },
-          ]
-        }
+    // const objects = 
+    //     {
+    //     name: infor.name,
+    //     phone: infor.phoneNumber,
+    //     province_code: province?.value,
+    //     email: infor.email,
+    //     school: infor.school,
+    //     type_id: categoryRadio,
+    //     major_id: infoPoint.idChuyenNganh,
+    //     scores: {
+    //       data: [
+    //         {
+    //           subject_id: 1,
+    //           batch_id: 1,
+    //           score: infoPoint.point.toan.diemhk1
+    //         },
+    //         {
+    //           subject_id: 1,
+    //           batch_id: 2,
+    //           score: infoPoint.point.toan.diemhk2
+    //         },
+    //         {
+    //           subject_id: 2,
+    //           batch_id: 1,
+    //           score: infoPoint.point.ly.diemhk1
+    //         },
+    //         {
+    //           subject_id: 2,
+    //           batch_id: 2,
+    //           score: infoPoint.point.ly.diemhk2
+    //         },
+    //         {
+    //           subject_id: 3,
+    //           batch_id: 1,
+    //           score: infoPoint.point.hoa.diemhk1
+    //         },
+    //         {
+    //           subject_id: 3,
+    //           batch_id: 2,
+    //           score: infoPoint.point.hoa.diemhk2
+    //         },
+    //         {
+    //           subject_id: 4,
+    //           batch_id: 1,
+    //           score: infoPoint.point.sinh.diemhk1
+    //         },
+    //         {
+    //           subject_id: 4,
+    //           batch_id: 2,
+    //           score: infoPoint.point.sinh.diemhk2
+    //         },
+    //         {
+    //           subject_id: 5,
+    //           batch_id: 1,
+    //           score: infoPoint.point.van.diemhk1
+    //         },
+    //         {
+    //           subject_id: 5,
+    //           batch_id: 2,
+    //           score: infoPoint.point.van.diemhk2
+    //         },
+    //         {
+    //           subject_id: 6,
+    //           batch_id: 1,
+    //           score: infoPoint.point.su.diemhk1
+    //         },
+    //         {
+    //           subject_id: 6,
+    //           batch_id: 2,
+    //           score: infoPoint.point.su.diemhk2
+    //         },
+    //         {
+    //           subject_id: 7,
+    //           batch_id: 1,
+    //           score: infoPoint.point.dia.diemhk1
+    //         },
+    //         {
+    //           subject_id: 7,
+    //           batch_id: 2,
+    //           score: infoPoint.point.dia.diemhk2
+    //         },
+    //         {
+    //           subject_id: 8,
+    //           batch_id: 1,
+    //           score: infoPoint.point.ta.diemhk1
+    //         },
+    //         {
+    //           subject_id: 8,
+    //           batch_id: 2,
+    //           score: infoPoint.point.ta.diemhk2
+    //         },
+    //         {
+    //           subject_id: 9,
+    //           batch_id: 1,
+    //           score: infoPoint.point.gdcd.diemhk1
+    //         },
+    //         {
+    //           subject_id: 9,
+    //           batch_id: 2,
+    //           score: infoPoint.point.gdcd.diemhk2
+    //         }
+    //       ]
+    //     }
+    //   }
+    const objects = {
+      name: "Thắng",
+      phone: "0912371343",
+      province_code: "01",
+      email: "abcxy123z@gmail.com",
+      school: "thang",
+      type_id: 1,
+      major_id: 1,
+      scores: {
+        data: [
+          {
+            subject_id: 1,
+            batch_id: 1,
+            score: 10
+          },
+          {
+            subject_id: 2,
+            batch_id: 1,
+            score: 10
+          },
+          {
+            subject_id: 3,
+            batch_id: 1,
+            score: 10
+          }
+        ]
       }
     }
+    
 
-    // insertDataApi(dataInsert)
+    insertDataApi(objects)
     //   .then(() => setIsModalNotifiEmail(true))
-    console.log(dataInsert)
+    console.log(objects)
     // setIsModalNotifiEmail(true)
     // console.log(data)
     // console.log(infoPoint)

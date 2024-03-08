@@ -10,7 +10,19 @@ export const getMajorApi = async () => {
   return res.data
 }
 
-export const insertDataApi = async (data) => {
-  const res = await axios.post(import.meta.env.VITE_POST_STUDENT, data)
-  return res
-}
+// export const insertDataApi = async (data) => {
+//   const res = await axios.post(, data)
+//   return res
+// }
+
+
+export const insertDataApi = async (objects) => {
+  return await axios({
+    url: import.meta.env.VITE_POST_STUDENT,
+    method: "post",
+    data: {objects},
+    headers: {
+      "content-type": "Application/json",
+    },
+  });
+};
