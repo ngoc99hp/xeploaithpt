@@ -55,11 +55,11 @@ const ModalNotifi = (props) => {
               {!isError
                 ?
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
-                  Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm học bạ lớp 12 của bạn là:
+                  Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
                 :
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
-                Rất tiếc bạn không đủ điều kiện để có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm học bạ lớp 12 của bạn là:
+                Rất tiếc bạn không đủ điều kiện để có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
               <p>Học kỳ 1:</p>

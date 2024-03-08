@@ -2,16 +2,15 @@ import { useState, useEffect } from 'react'
 import TextInput from '../textInput'
 import ModalNotifiEmail from './ModalNotifiEmail'
 import Select from 'react-select'
-import { getProvinceApi } from "../api/index"
-import { useDispatch, useSelector} from "react-redux"
-import { update } from '../redux/infoPersonalSlice'
+import { getProvinceApi, insertDataApi } from "../api/index"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const ModalInfoPersonal = (props) => {
   const { setIsModalInfoPersonal } = props
 
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
-  const infoPersonal = useSelector((state) => state.infoPersonal.currentData)
+
 
   const dataCategory = [
     {
@@ -62,7 +61,7 @@ const ModalInfoPersonal = (props) => {
   const [province, setProvince] = useState("")
   const [provinces, setProvinces] = useState([])
   const [isModalNotifiEmail, setIsModalNotifiEmail] = useState(false)
-  const dispatch = useDispatch()
+
 
   useEffect(() => {
     getProvinceApi()
@@ -80,15 +79,9 @@ const ModalInfoPersonal = (props) => {
     })
   }
 
+  console.log(province)
+
   const handleSubmit = () => {
-    const data = {
-      name: infor.name,
-      phone: infor.phoneNumber,
-      email: infor.email,
-      province_code: province.value,
-      school: infor.school,
-      whereInfoSchool: whereInfoSchoolCheckbox
-    }
     const dataInsert = {
       objects: {
         name: infor.name,
@@ -194,8 +187,11 @@ const ModalInfoPersonal = (props) => {
         }
       }
     }
+
+    // insertDataApi(dataInsert)
+    //   .then(() => setIsModalNotifiEmail(true))
     console.log(dataInsert)
-    setIsModalNotifiEmail(true)
+    // setIsModalNotifiEmail(true)
     // console.log(data)
     // console.log(infoPoint)
   }
@@ -241,7 +237,7 @@ const ModalInfoPersonal = (props) => {
                 />
                 <TextInput
                   require
-                  label={"Email"}
+                  label={"email"}
                   id={"Email"}
                   value={infor.email}
                   onChange={(e) => setInfor({ ...infor, email: e.target.value })}
