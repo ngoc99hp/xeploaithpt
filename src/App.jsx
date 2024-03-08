@@ -258,7 +258,7 @@ function App() {
         tohop: item.combination.code,
         diem: diemtohopItem ? diemtohopItem.num : 0,
       };
-    });
+    }).flat();
     setNumMajor(numMajorUpdated);
   };
 
