@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import TextInput from '../textInput'
 import ModalNotifiEmail from './ModalNotifiEmail'
+import ModalNotifiError from './ModalNotifiError'
 import Select from 'react-select'
 import { getProvinceApi, insertDataApi } from "../api/index"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux"
 
 const ModalInfoPersonal = (props) => {
   const { setIsModalInfoPersonal } = props
-
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
 
 
@@ -46,6 +46,8 @@ const ModalInfoPersonal = (props) => {
       name: "Kênh khác"
     }
   ]
+  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [infor, setInfor] = useState({
     // Thông tin cá nhân
     email: "",
@@ -82,146 +84,117 @@ const ModalInfoPersonal = (props) => {
   console.log(province)
 
   const handleSubmit = () => {
-    // const objects = 
-    //     {
-    //     name: infor.name,
-    //     phone: infor.phoneNumber,
-    //     province_code: province?.value,
-    //     email: infor.email,
-    //     school: infor.school,
-    //     type_id: categoryRadio,
-    //     major_id: infoPoint.idChuyenNganh,
-    //     scores: {
-    //       data: [
-    //         {
-    //           subject_id: 1,
-    //           batch_id: 1,
-    //           score: infoPoint.point.toan.diemhk1
-    //         },
-    //         {
-    //           subject_id: 1,
-    //           batch_id: 2,
-    //           score: infoPoint.point.toan.diemhk2
-    //         },
-    //         {
-    //           subject_id: 2,
-    //           batch_id: 1,
-    //           score: infoPoint.point.ly.diemhk1
-    //         },
-    //         {
-    //           subject_id: 2,
-    //           batch_id: 2,
-    //           score: infoPoint.point.ly.diemhk2
-    //         },
-    //         {
-    //           subject_id: 3,
-    //           batch_id: 1,
-    //           score: infoPoint.point.hoa.diemhk1
-    //         },
-    //         {
-    //           subject_id: 3,
-    //           batch_id: 2,
-    //           score: infoPoint.point.hoa.diemhk2
-    //         },
-    //         {
-    //           subject_id: 4,
-    //           batch_id: 1,
-    //           score: infoPoint.point.sinh.diemhk1
-    //         },
-    //         {
-    //           subject_id: 4,
-    //           batch_id: 2,
-    //           score: infoPoint.point.sinh.diemhk2
-    //         },
-    //         {
-    //           subject_id: 5,
-    //           batch_id: 1,
-    //           score: infoPoint.point.van.diemhk1
-    //         },
-    //         {
-    //           subject_id: 5,
-    //           batch_id: 2,
-    //           score: infoPoint.point.van.diemhk2
-    //         },
-    //         {
-    //           subject_id: 6,
-    //           batch_id: 1,
-    //           score: infoPoint.point.su.diemhk1
-    //         },
-    //         {
-    //           subject_id: 6,
-    //           batch_id: 2,
-    //           score: infoPoint.point.su.diemhk2
-    //         },
-    //         {
-    //           subject_id: 7,
-    //           batch_id: 1,
-    //           score: infoPoint.point.dia.diemhk1
-    //         },
-    //         {
-    //           subject_id: 7,
-    //           batch_id: 2,
-    //           score: infoPoint.point.dia.diemhk2
-    //         },
-    //         {
-    //           subject_id: 8,
-    //           batch_id: 1,
-    //           score: infoPoint.point.ta.diemhk1
-    //         },
-    //         {
-    //           subject_id: 8,
-    //           batch_id: 2,
-    //           score: infoPoint.point.ta.diemhk2
-    //         },
-    //         {
-    //           subject_id: 9,
-    //           batch_id: 1,
-    //           score: infoPoint.point.gdcd.diemhk1
-    //         },
-    //         {
-    //           subject_id: 9,
-    //           batch_id: 2,
-    //           score: infoPoint.point.gdcd.diemhk2
-    //         }
-    //       ]
-    //     }
-    //   }
+    setLoading(true)
     const objects = {
-      name: "Thắng",
-      phone: "0912371343",
-      province_code: "01",
-      email: "abcxy123z@gmail.com",
-      school: "thang",
-      type_id: 1,
-      major_id: 1,
+      name: infor.name,
+      phone: infor.phoneNumber,
+      province_code: province?.value,
+      email: infor.email,
+      school: infor.school,
+      type_id: categoryRadio + 1,
+      major_id: infoPoint.idChuyenNganh,
       scores: {
         data: [
           {
             subject_id: 1,
             batch_id: 1,
-            score: 10
+            score: +infoPoint.point.toan.diemhk1
+          },
+          {
+            subject_id: 1,
+            batch_id: 2,
+            score: +infoPoint.point.toan.diemhk2
           },
           {
             subject_id: 2,
             batch_id: 1,
-            score: 10
+            score: +infoPoint.point.ly.diemhk1
+          },
+          {
+            subject_id: 2,
+            batch_id: 2,
+            score: +infoPoint.point.ly.diemhk2
           },
           {
             subject_id: 3,
             batch_id: 1,
-            score: 10
+            score: +infoPoint.point.hoa.diemhk1
+          },
+          {
+            subject_id: 3,
+            batch_id: 2,
+            score: +infoPoint.point.hoa.diemhk2
+          },
+          {
+            subject_id: 4,
+            batch_id: 1,
+            score: +infoPoint.point.sinh.diemhk1
+          },
+          {
+            subject_id: 4,
+            batch_id: 2,
+            score: +infoPoint.point.sinh.diemhk2
+          },
+          {
+            subject_id: 5,
+            batch_id: 1,
+            score: +infoPoint.point.van.diemhk1
+          },
+          {
+            subject_id: 5,
+            batch_id: 2,
+            score: +infoPoint.point.van.diemhk2
+          },
+          {
+            subject_id: 6,
+            batch_id: 1,
+            score: +infoPoint.point.su.diemhk1
+          },
+          {
+            subject_id: 6,
+            batch_id: 2,
+            score: +infoPoint.point.su.diemhk2
+          },
+          {
+            subject_id: 7,
+            batch_id: 1,
+            score: +infoPoint.point.dia.diemhk1
+          },
+          {
+            subject_id: 7,
+            batch_id: 2,
+            score: +infoPoint.point.dia.diemhk2
+          },
+          {
+            subject_id: 8,
+            batch_id: 1,
+            score: +infoPoint.point.ta.diemhk1
+          },
+          {
+            subject_id: 8,
+            batch_id: 2,
+            score: +infoPoint.point.ta.diemhk2
+          },
+          {
+            subject_id: 9,
+            batch_id: 1,
+            score: +infoPoint.point.gdcd.diemhk1
+          },
+          {
+            subject_id: 9,
+            batch_id: 2,
+            score: +infoPoint.point.gdcd.diemhk2
           }
         ]
       }
     }
-    
 
     insertDataApi(objects)
-    //   .then(() => setIsModalNotifiEmail(true))
+      .then(() => setIsModalNotifiEmail(true))
+      .catch(() => setError(true))
+    setLoading(false)
     console.log(objects)
-    // setIsModalNotifiEmail(true)
-    // console.log(data)
-    // console.log(infoPoint)
+
   }
   return (
     <>
@@ -325,11 +298,23 @@ const ModalInfoPersonal = (props) => {
               </div>
             </div>
             <div className='w-full  flex items-center justify-center mt-5'>
-              <button onClick={handleSubmit} className='w-full sm:w-auto px-4 py-2 bg-[#0083C2] text-white rounded-md'>Hoàn thành</button>
+              {loading
+                ?
+                <button className='w-full sm:w-auto px-4 py-2 bg-[#0083C2] text-white rounded-md'>
+                  <svg aria-hidden="true" role="status" className="inline w-4 h-4 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+                  </svg>
+                  Đang hoàn thành...
+                </button>
+                :
+                <button onClick={handleSubmit} className='w-full sm:w-auto px-4 py-2 bg-[#0083C2] text-white rounded-md'>Hoàn thành</button>
+              }
             </div>
           </div>
         </div>
       </div>
+      {error && <ModalNotifiError setError = {setError}/>}
       {isModalNotifiEmail && <ModalNotifiEmail setIsModalNotifiEmail={setIsModalNotifiEmail}/>}
     </>
   )

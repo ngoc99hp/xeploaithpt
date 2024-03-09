@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import ModalNotifi from "./components/ModalNotifi"
-import ModalNotifiEmail from "./components/ModalNotifiEmail"
 
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
@@ -530,6 +529,7 @@ function App() {
                         id={"add_toanhk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -541,6 +541,7 @@ function App() {
                         id={"add_lyhk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -552,6 +553,7 @@ function App() {
                         id={"add_hoahk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -563,6 +565,7 @@ function App() {
                         id={"add_sinhhk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         label={"Văn"}
@@ -573,6 +576,7 @@ function App() {
                         id={"add_vanhk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -584,6 +588,7 @@ function App() {
                         id={"add_suhk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -595,6 +600,7 @@ function App() {
                         id={"add_diahk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -606,6 +612,7 @@ function App() {
                         id={"add_tahk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                       <TextInput
                         type={"text"}
@@ -617,6 +624,7 @@ function App() {
                         id={"add_gdcdhk2"}
                         min={"0"}
                         max={"10"}
+                        require
                       />
                     </div>
                   </div>
