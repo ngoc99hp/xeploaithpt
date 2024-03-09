@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import ModalNotifi from "./components/ModalNotifi"
+import ModalInfoPersonal from "./components/ModalInfoPersonal"
 
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
@@ -344,7 +345,7 @@ function App() {
                   {dataAdmissionMethod.map((i, ind) => (
                     <div
                       key={ind}
-                      className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${
+                      className={`flex items-center justify-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${
                         ind === admissionMethodRadio ? "text-primary" : ""
                       } duration-200`}
                     >
@@ -403,7 +404,7 @@ function App() {
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
                       <TextInput
                         type={"text"}
-                        label={"Toán"}
+                        label={"Toán: ( vd: 6.9, 10...)"}
                         value={infor.toanhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, toanhk1: e.target.value })
@@ -515,7 +516,7 @@ function App() {
                 {hocKy === 1 && (
                   <div className="w-full flex flex-col items-center">
                     <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-primary">
-                      Điểm trung bình lớp (HK2)
+                      Điểm trung bình lớp 12 (HK2)
                     </h3>
                     {/* Điểm trung bình học kì 1 lớp  */}
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
@@ -676,7 +677,7 @@ function App() {
       </div>
       {/* model Notifi */}
       {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi}/>}
-      {/* <ModalNotifiEmail/> */}
+      {/* <ModalInfoPersonal/> */}
     </>
   )
 }
