@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useSelector } from 'react-redux'
 import ModalInfoPersonal from "../components/ModalInfoPersonal"
 
@@ -6,12 +6,12 @@ import ModalInfoPersonal from "../components/ModalInfoPersonal"
 const ModalNotifi = (props) => {
   const { setIsModalNotifi } = props
   const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(false)
-  const [error, setError] = useState(false)
 
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
   const isError = infoPoint.num.every(i => i.diem < 15) && infoPoint.num2.every(i => i.diem < 15)
+  const isNaN = infoPoint.num.some(i => i.diem === "NaN") || infoPoint.num2.some(i => i.diem === "NaN")
 
-
+  console.log(isNaN)
   return (
     <>
       <div
@@ -52,14 +52,19 @@ const ModalNotifi = (props) => {
             </div>
             {/* <!-- Modal body --> */}
             <div className="p-4 md:p-5">
-              {!isError
-                ?
+              {!isError && !isNaN &&
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
                   Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
-                :
+              }
+              {isError &&
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
                 Rất tiếc bạn không đủ điều kiện để có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                </p>
+              }
+              {isNaN &&
+                <p className="text-base font-semibold leading-relaxed text-red-400 pb-3">
+                  Hình như ô nhập điểm nào đó bạn đã nhập không đúng định dạng là số. Vui lòng bạn kiểm tra lại!
                 </p>
               }
               <p>Học kỳ 1:</p>
@@ -76,7 +81,7 @@ const ModalNotifi = (props) => {
               </div>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center px-4 pt-4 border-t border-gray-200 rounded-b">
-                {!isError &&
+                {!isError || isNaN &&
                   <button onClick={() => setIsModalInfoPersonal(true)} className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     Đăng ký
                   </button>
