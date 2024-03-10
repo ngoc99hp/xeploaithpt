@@ -11,7 +11,8 @@ const TextInput = ({
   id,
   onChange,
   min,
-  max
+  max,
+  name
 }) => {
 
   return (
@@ -31,6 +32,7 @@ const TextInput = ({
         onChange={onChange}
         min={min}
         max={max}
+        name={name}
       />
       <label
         htmlFor={id}

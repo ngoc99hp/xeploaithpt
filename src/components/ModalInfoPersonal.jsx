@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import TextInput from '../textInput'
 import ModalNotifiEmail from './ModalNotifiEmail'
 import ModalNotifiError from './ModalNotifiError'
@@ -6,9 +6,12 @@ import Select from 'react-select'
 import { getProvinceApi, insertDataApi } from "../api/index"
 import { useDispatch, useSelector } from "react-redux"
 
+import emailjs from '@emailjs/browser'
+
 
 const ModalInfoPersonal = (props) => {
   const { setIsModalInfoPersonal } = props
+  const formRef = useRef()
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
 
 
@@ -189,17 +192,131 @@ const ModalInfoPersonal = (props) => {
         ]
       }
     }
+    const objectsEmail = {
+      name: infor.name,
+      phone: infor.phoneNumber,
+      email: infor.email,
+      school: infor.school,
+      type_id: categoryRadio + 1,
+      major: infoPoint.chuyenNganh,
+      scores: {
+        data: [
+          {
+            subject_id: 1,
+            batch_id: 1,
+            score: +infoPoint.point.toan.diemhk1
+          },
+          {
+            subject_id: 1,
+            batch_id: 2,
+            score: +infoPoint.point.toan.diemhk2
+          },
+          {
+            subject_id: 2,
+            batch_id: 1,
+            score: +infoPoint.point.ly.diemhk1
+          },
+          {
+            subject_id: 2,
+            batch_id: 2,
+            score: +infoPoint.point.ly.diemhk2
+          },
+          {
+            subject_id: 3,
+            batch_id: 1,
+            score: +infoPoint.point.hoa.diemhk1
+          },
+          {
+            subject_id: 3,
+            batch_id: 2,
+            score: +infoPoint.point.hoa.diemhk2
+          },
+          {
+            subject_id: 4,
+            batch_id: 1,
+            score: +infoPoint.point.sinh.diemhk1
+          },
+          {
+            subject_id: 4,
+            batch_id: 2,
+            score: +infoPoint.point.sinh.diemhk2
+          },
+          {
+            subject_id: 5,
+            batch_id: 1,
+            score: +infoPoint.point.van.diemhk1
+          },
+          {
+            subject_id: 5,
+            batch_id: 2,
+            score: +infoPoint.point.van.diemhk2
+          },
+          {
+            subject_id: 6,
+            batch_id: 1,
+            score: +infoPoint.point.su.diemhk1
+          },
+          {
+            subject_id: 6,
+            batch_id: 2,
+            score: +infoPoint.point.su.diemhk2
+          },
+          {
+            subject_id: 7,
+            batch_id: 1,
+            score: +infoPoint.point.dia.diemhk1
+          },
+          {
+            subject_id: 7,
+            batch_id: 2,
+            score: +infoPoint.point.dia.diemhk2
+          },
+          {
+            subject_id: 8,
+            batch_id: 1,
+            score: +infoPoint.point.ta.diemhk1
+          },
+          {
+            subject_id: 8,
+            batch_id: 2,
+            score: +infoPoint.point.ta.diemhk2
+          },
+          {
+            subject_id: 9,
+            batch_id: 1,
+            score: +infoPoint.point.gdcd.diemhk1
+          },
+          {
+            subject_id: 9,
+            batch_id: 2,
+            score: +infoPoint.point.gdcd.diemhk2
+          }
+        ]
+      }
+    }
     insertDataApi(objects)
-      .then(() => setIsModalNotifiEmail(true))
+      .then(alert("Cập nhật thông tin thành công!"))
       .catch(() => setError(true))
-    await setLoading(false)
+    setLoading(false)
     console.log(objects)
+    emailjs
+      .send('service_opy2o8e', 'template_3igmq65', objectsEmail, {
+        publicKey: 'MPiUa1f80r2alEFHl'
+      })
+      .then(
+        () => {
+          setIsModalNotifiEmail(true)
+        },
+        (error) => {
+          alert("Gửi email thất bại!")
+        }
+      )
 
   }
   return (
     <>
       <div id="static-modal" data-modal-backdrop="static" tabIndex="-1" aria-hidden="true" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 px-2 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-[#1e1e1e6f]">
-        <form onSubmit={handleSubmit} className='relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-full md:max-w-[90%] xl:max-w-[70%] max-h-full'>
+        <form onSubmit={handleSubmit} ref={formRef} className='relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] w-full md:max-w-[90%] xl:max-w-[70%] max-h-full'>
           <div className="">
             {/* <!-- Modal content --> */}
             <div className="relative w-full p-5 bg-white rounded-lg shadow">
@@ -218,6 +335,7 @@ const ModalInfoPersonal = (props) => {
                     require
                     label={"Họ và tên"}
                     id={"Họ và tên"}
+                    name={"name"}
                     value={infor.name}
                     onChange ={(e) => setInfor({ ...infor, name: e.target.value })}
                   />
@@ -242,6 +360,7 @@ const ModalInfoPersonal = (props) => {
                     type={"email"}
                     label={"Email"}
                     id={"Email"}
+                    name={"email"}
                     value={infor.email}
                     onChange={(e) => setInfor({ ...infor, email: e.target.value })}
                   />
