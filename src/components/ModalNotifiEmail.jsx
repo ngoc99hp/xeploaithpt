@@ -18,7 +18,7 @@ const ModalNotifiEmail = (props) => {
           <div className="relative bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-              <h3 className="text-xl font-semibold text-gray-900">Thông báo</h3>
+              <h3 className="text-xl font-semibold text-primary">Thông báo</h3>
               <button
                 onClick={() => setIsModalNotifiEmail(false)}
                 type="button"
@@ -44,8 +44,11 @@ const ModalNotifiEmail = (props) => {
             </div>
             {/* <!-- Modal body --> */}
             <div className="p-4 md:p-5 space-y-4">
-              <p className="text-base leading-relaxed text-gray-500">
-                Bạn đã đăng ký thành công, sẽ có 1 thông báo gửi về địa chỉ email cho bạn và Phòng tuyển sinh của trường sớm liên hệ cho bnaj trong thời gian ngắn nhất.
+              <p className="text-base uppercase font-semibold text-center text-primary leading-relaxed">
+                Bạn đã đăng ký thành công!
+              </p>
+              <p className="text-center">
+                Vui lòng kiểm email để biết kết quả.
               </p>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center px-4 pt-4 border-t border-gray-200 rounded-b">

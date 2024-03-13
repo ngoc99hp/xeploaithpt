@@ -11,7 +11,6 @@ const ModalNotifi = (props) => {
   const isError = infoPoint.num.every(i => i.diem < 15) && infoPoint.num2.every(i => i.diem < 15)
   const isNaN = infoPoint.num.some(i => i.diem === "NaN") || infoPoint.num2.some(i => i.diem === "NaN")
 
-  console.log(isNaN)
   return (
     <>
       <div
@@ -63,8 +62,8 @@ const ModalNotifi = (props) => {
                 </p>
               }
               {isNaN &&
-                <p className="text-base font-semibold leading-relaxed text-red-400 pb-3">
-                  Hình như ô nhập điểm nào đó bạn đã nhập không đúng định dạng là số. Vui lòng bạn kiểm tra lại!
+                <p className="text-lg font-semibold leading-relaxed text-red-400 pb-3">
+                  Định dạng phần nhập điểm phải là số (vd: 6.8, 9,...). Vui lòng bạn kiểm tra lại!
                 </p>
               }
               <p>Học kỳ 1:</p>
@@ -79,9 +78,16 @@ const ModalNotifi = (props) => {
                   <p key={i.tohop} className='font-semibold'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
                 ))}
               </div>
+              <div>
+                {/* Thông tin học bổng */}
+                <div>
+
+                </div>
+
+              </div>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center px-4 pt-4 border-t border-gray-200 rounded-b">
-                {!isError || isNaN &&
+                {!isError && !isNaN &&
                   <button onClick={() => setIsModalInfoPersonal(true)} className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     Đăng ký
                   </button>

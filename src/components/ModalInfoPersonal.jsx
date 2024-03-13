@@ -23,7 +23,7 @@ const ModalInfoPersonal = (props) => {
       name: "Thí sinh tự do"
     }
   ]
-  const dataWhereInfoSchool = [
+  const dataWhereInfoSchoolNoChecked = [
     {
       name: "Website của nhà trường"
     },
@@ -49,6 +49,7 @@ const ModalInfoPersonal = (props) => {
       name: "Kênh khác"
     }
   ]
+  const [dataWhereInfoSchool, setDataWhereInfoSchool] = useState(dataWhereInfoSchoolNoChecked.map(i => ({ ...i, isChecked: false })))
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [infor, setInfor] = useState({
@@ -73,23 +74,27 @@ const ModalInfoPersonal = (props) => {
       .then((res) => setProvinces(res.result))
   }, [])
 
-  const handleCheckBox = (name) => {
-    setWhereInfoSchoolCheckbox(prev => {
-      const isChecked = whereInfoSchoolCheckbox.includes(name)
-      if (isChecked) {
-        return whereInfoSchoolCheckbox.filter(i => i !== name)
-      } else {
-        return [...prev, name]
-      }
-    })
+  const handleCheckBox = (ind) => {
+    setDataWhereInfoSchool(
+      dataWhereInfoSchool.map((i, index) => {
+        if ( ind === index) {
+          return {
+            ...i,
+            isChecked: !i.isChecked
+          }
+        }
+        return i
+      })
+    )
   }
 
-  console.log(province)
+  console.log(dataWhereInfoSchool)
 
   const handleSubmit =async (e) => {
     e.preventDefault()
     setLoading(true)
     const objects = {
+      
       name: infor.name,
       phone: infor.phoneNumber,
       province_code: province?.value,
@@ -197,121 +202,120 @@ const ModalInfoPersonal = (props) => {
       phone: infor.phoneNumber,
       email: infor.email,
       school: infor.school,
-      type_id: categoryRadio + 1,
       major: infoPoint.chuyenNganh,
-      scores: {
-        data: [
-          {
-            subject_id: 1,
-            batch_id: 1,
-            score: +infoPoint.point.toan.diemhk1
-          },
-          {
-            subject_id: 1,
-            batch_id: 2,
-            score: +infoPoint.point.toan.diemhk2
-          },
-          {
-            subject_id: 2,
-            batch_id: 1,
-            score: +infoPoint.point.ly.diemhk1
-          },
-          {
-            subject_id: 2,
-            batch_id: 2,
-            score: +infoPoint.point.ly.diemhk2
-          },
-          {
-            subject_id: 3,
-            batch_id: 1,
-            score: +infoPoint.point.hoa.diemhk1
-          },
-          {
-            subject_id: 3,
-            batch_id: 2,
-            score: +infoPoint.point.hoa.diemhk2
-          },
-          {
-            subject_id: 4,
-            batch_id: 1,
-            score: +infoPoint.point.sinh.diemhk1
-          },
-          {
-            subject_id: 4,
-            batch_id: 2,
-            score: +infoPoint.point.sinh.diemhk2
-          },
-          {
-            subject_id: 5,
-            batch_id: 1,
-            score: +infoPoint.point.van.diemhk1
-          },
-          {
-            subject_id: 5,
-            batch_id: 2,
-            score: +infoPoint.point.van.diemhk2
-          },
-          {
-            subject_id: 6,
-            batch_id: 1,
-            score: +infoPoint.point.su.diemhk1
-          },
-          {
-            subject_id: 6,
-            batch_id: 2,
-            score: +infoPoint.point.su.diemhk2
-          },
-          {
-            subject_id: 7,
-            batch_id: 1,
-            score: +infoPoint.point.dia.diemhk1
-          },
-          {
-            subject_id: 7,
-            batch_id: 2,
-            score: +infoPoint.point.dia.diemhk2
-          },
-          {
-            subject_id: 8,
-            batch_id: 1,
-            score: +infoPoint.point.ta.diemhk1
-          },
-          {
-            subject_id: 8,
-            batch_id: 2,
-            score: +infoPoint.point.ta.diemhk2
-          },
-          {
-            subject_id: 9,
-            batch_id: 1,
-            score: +infoPoint.point.gdcd.diemhk1
-          },
-          {
-            subject_id: 9,
-            batch_id: 2,
-            score: +infoPoint.point.gdcd.diemhk2
-          }
-        ]
-      }
+      // scores: {
+      //   data: [
+      //     {
+      //       subject_id: 1,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.toan.diemhk1
+      //     },
+      //     {
+      //       subject_id: 1,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.toan.diemhk2
+      //     },
+      //     {
+      //       subject_id: 2,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.ly.diemhk1
+      //     },
+      //     {
+      //       subject_id: 2,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.ly.diemhk2
+      //     },
+      //     {
+      //       subject_id: 3,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.hoa.diemhk1
+      //     },
+      //     {
+      //       subject_id: 3,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.hoa.diemhk2
+      //     },
+      //     {
+      //       subject_id: 4,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.sinh.diemhk1
+      //     },
+      //     {
+      //       subject_id: 4,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.sinh.diemhk2
+      //     },
+      //     {
+      //       subject_id: 5,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.van.diemhk1
+      //     },
+      //     {
+      //       subject_id: 5,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.van.diemhk2
+      //     },
+      //     {
+      //       subject_id: 6,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.su.diemhk1
+      //     },
+      //     {
+      //       subject_id: 6,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.su.diemhk2
+      //     },
+      //     {
+      //       subject_id: 7,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.dia.diemhk1
+      //     },
+      //     {
+      //       subject_id: 7,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.dia.diemhk2
+      //     },
+      //     {
+      //       subject_id: 8,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.ta.diemhk1
+      //     },
+      //     {
+      //       subject_id: 8,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.ta.diemhk2
+      //     },
+      //     {
+      //       subject_id: 9,
+      //       batch_id: 1,
+      //       score: +infoPoint.point.gdcd.diemhk1
+      //     },
+      //     {
+      //       subject_id: 9,
+      //       batch_id: 2,
+      //       score: +infoPoint.point.gdcd.diemhk2
+      //     }
+      //   ]
+      // }
     }
-    insertDataApi(objects)
-      .then(alert("Cập nhật thông tin thành công!"))
-      .catch(() => setError(true))
-    setLoading(false)
-    console.log(objects)
-    emailjs
-      .send('service_opy2o8e', 'template_3igmq65', objectsEmail, {
-        publicKey: 'MPiUa1f80r2alEFHl'
-      })
+    await insertDataApi(objects)
       .then(
-        () => {
-          setIsModalNotifiEmail(true)
-        },
-        (error) => {
-          alert("Gửi email thất bại!")
-        }
+        emailjs
+          .send('service_opy2o8e', 'template_3igmq65', objectsEmail, {
+            publicKey: 'MPiUa1f80r2alEFHl'
+          })
+          .then(
+            () => {
+              setIsModalNotifiEmail(true)
+            },
+            (error) => {
+              alert("Gửi email thất bại!")
+            }
+          )
       )
-
+      .catch(() => setError(true))
+    // console.log(objects)
+    setLoading(false)
   }
   return (
     <>
@@ -411,8 +415,8 @@ const ModalInfoPersonal = (props) => {
                       <input
                         className='w-4 h-4'
                         type="checkbox" name={i.name} id={i.name}
-                        checked={whereInfoSchoolCheckbox.includes(i.name)}
-                        onChange={() => handleCheckBox(i.name)}
+                        checked={i.isChecked}
+                        onChange={() => handleCheckBox(ind)}
                       />
                       <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
                     </div>

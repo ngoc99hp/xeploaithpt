@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import ModalNotifi from "./components/ModalNotifi"
 import ModalInfoPersonal from "./components/ModalInfoPersonal"
+import ModalNotifiEmail from "./components/ModalNotifiEmail"
 
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
@@ -25,7 +26,7 @@ function App() {
   const dataAdmissionMethod = [
     {
       name: "Xét theo học bạ THPT"
-    },
+    }
     // {
     //   name: "Xét theo kết quả kỳ thi tốt nghiệp THPT 2024"
     // }
@@ -678,6 +679,7 @@ function App() {
       {/* model Notifi */}
       {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi}/>}
       {/* <ModalInfoPersonal/> */}
+      {/* {<ModalNotifiEmail/>} */}
     </>
   )
 }
