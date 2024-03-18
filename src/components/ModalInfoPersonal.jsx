@@ -364,7 +364,7 @@ const ModalInfoPersonal = (props) => {
                     type={"email"}
                     label={"Email"}
                     id={"Email"}
-                    name={"email"}
+                    name={"Email"}
                     value={infor.email}
                     onChange={(e) => setInfor({ ...infor, email: e.target.value })}
                   />
