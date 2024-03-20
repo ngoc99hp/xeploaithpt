@@ -8,6 +8,9 @@ export default {
     extend: {
       colors: {
         primary: '#0083C2'
+      },
+      textShadow: {
+        sm: '0 0 0 2px #333'
       }
     },
     screens: {

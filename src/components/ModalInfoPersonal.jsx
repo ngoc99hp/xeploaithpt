@@ -94,7 +94,6 @@ const ModalInfoPersonal = (props) => {
     e.preventDefault()
     setLoading(true)
     const objects = {
-      
       name: infor.name,
       phone: infor.phoneNumber,
       province_code: province?.value,
