@@ -5,7 +5,7 @@ import ModalNotifiEmail from "./components/ModalNotifiEmail"
 
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
-import BackgroundImage2 from "./assets/bg2.jpg"
+import BackgroundImage2 from "./assets/logo4.jpg"
 import TextInput from "./textInput"
 
 import { getMajorApi } from "./api/index"
@@ -79,7 +79,7 @@ function App() {
   }, [])
 
 
-  // console.log("Danh sách chuyên ngành :", majorData) 
+  // console.log("Danh sách chuyên ngành :", majorData)
 
   //Tính điểm tổ hợp
   const [diemtohop, setDiemtohop] = useState([])
@@ -309,7 +309,8 @@ function App() {
           diemhk1: infor.gdcdhk1,
           diemhk2: infor.gdcdhk2
         }
-      }
+      },
+      info: infor
     }
     dispatch(update(data))
     setIsModalNotifi(true)
@@ -319,7 +320,7 @@ function App() {
   return (
     <>
       <div
-        className="relative h-[100vh] bg-cover bg-center bg-fixed pb-[20px]"
+        className="relative h-[100vh] bg-cover bg-top bg-fixed pb-[20px]"
         style={{ backgroundImage: backgroundImageUrl }}
       >
         <div className="absolute inset-0 backdrop-blur-sm"></div>
@@ -405,7 +406,7 @@ function App() {
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
                       <TextInput
                         type={"text"}
-                        label={"Toán: ( vd: 6.9, 10...)"}
+                        label={"Toán ( vd: 6.9, 10...)"}
                         value={infor.toanhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, toanhk1: e.target.value })
@@ -417,7 +418,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Lý"}
+                        label={"Lý ( vd: 6.9, 10...)"}
                         value={infor.lyhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, lyhk1: e.target.value })
@@ -429,7 +430,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Hoá"}
+                        label={"Hoá ( vd: 6.9, 10...)"}
                         value={infor.hoahk1}
                         onChange={(e) =>
                           setInfor({ ...infor, hoahk1: e.target.value })
@@ -441,7 +442,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Sinh"}
+                        label={"Sinh ( vd: 6.9, 10...)"}
                         value={infor.sinhhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, sinhhk1: e.target.value })
@@ -453,7 +454,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Văn"}
+                        label={"Văn ( vd: 6.9, 10...)"}
                         value={infor.vanhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, vanhk1: e.target.value })
@@ -465,7 +466,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Sử"}
+                        label={"Sử ( vd: 6.9, 10...)"}
                         value={infor.suhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, suhk1: e.target.value })
@@ -477,7 +478,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Địa"}
+                        label={"Địa ( vd: 6.9, 10...)"}
                         value={infor.diahk1}
                         onChange={(e) =>
                           setInfor({ ...infor, diahk1: e.target.value })
@@ -489,7 +490,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Tiếng Anh"}
+                        label={"Tiếng Anh ( vd: 6.9, 10...)"}
                         value={infor.tahk1}
                         onChange={(e) =>
                           setInfor({ ...infor, tahk1: e.target.value })
@@ -501,7 +502,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Giáo dục công dân"}
+                        label={"Giáo dục công dân ( vd: 6.9, 10...)"}
                         value={infor.gdcdhk1}
                         onChange={(e) =>
                           setInfor({ ...infor, gdcdhk1: e.target.value })
@@ -523,7 +524,7 @@ function App() {
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
                       <TextInput
                         type={"text"}
-                        label={"Toán"}
+                        label={"Toán ( vd: 6.9, 10...)"}
                         value={infor.toanhk2}
                         onChange={(e) =>
                           setInfor({ ...infor, toanhk2: e.target.value })
@@ -535,7 +536,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Lý"}
+                        label={"Lý ( vd: 6.9, 10...)"}
                         value={infor.lyhk2}
                         onChange={(e) =>
                           setInfor({ ...infor, lyhk2: e.target.value })
@@ -547,7 +548,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Hoá"}
+                        label={"Hoá ( vd: 6.9, 10...)"}
                         value={infor.hoahk2}
                         onChange={(e) =>
                           setInfor({ ...infor, hoahk2: e.target.value })
@@ -559,7 +560,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Sinh"}
+                        label={"Sinh ( vd: 6.9, 10...)"}
                         value={infor.sinhhk2}
                         onChange={(e) =>
                           setInfor({ ...infor, sinhhk2: e.target.value })
@@ -570,7 +571,7 @@ function App() {
                         require
                       />
                       <TextInput
-                        label={"Văn"}
+                        label={"Văn ( vd: 6.9, 10...)"}
                         value={infor.vanhk2}
                         onChange={(e) =>
                           setInfor({ ...infor, vanhk2: e.target.value })
@@ -582,7 +583,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Sử"}
+                        label={"Sử ( vd: 6.9, 10...)"}
                         value={infor.suhk2}
                         onChange={(e) =>
                           setInfor({ ...infor, suhk2: e.target.value })
@@ -594,7 +595,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Địa"}
+                        label={"Địa ( vd: 6.9, 10...)"}
                         value={infor.diahk2}
                         onChange={(e) =>
                           setInfor({ ...infor, diahk2: e.target.value })
@@ -606,7 +607,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Tiếng Anh"}
+                        label={"Tiếng Anh ( vd: 6.9, 10...)"}
                         value={infor.tahk2}
                         onChange={(e) =>
                           setInfor({ ...infor, tahk2: e.target.value })
@@ -618,7 +619,7 @@ function App() {
                       />
                       <TextInput
                         type={"text"}
-                        label={"Giáo dục công dân"}
+                        label={"Giáo dục công dân ( vd: 6.9, 10...)"}
                         value={infor.gdcdhk2}
                         onChange={(e) =>
                           setInfor({ ...infor, gdcdhk2: e.target.value })
@@ -642,7 +643,7 @@ function App() {
                     key={category.code}
                     className="flex flex-col w-full gap-2 py-3"
                   >
-                    <h4 className="text-lg">{category.name} :</h4>
+                    <h4 className="text-lg">{category.name}</h4>
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 text-gray-500 pl-[20px]">
                       {category.majors?.map((major, majorIndex) => (
                         <div key={major.id} className="flex items-center gap-1">
