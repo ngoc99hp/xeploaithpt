@@ -14,6 +14,10 @@ const ModalNotifi = (props) => {
   const isError = infoPoint.num.every(i => i.diem < 15) && infoPoint.num2.every(i => i.diem < 15)
   const isNaN = infoPoint.num.some(i => i.diem === "NaN") || infoPoint.num2.some(i => i.diem === "NaN")
 
+  console.log(isError)
+  console.log(isLiet)
+  console.log(isNaN)
+
   return (
     <>
       <div
@@ -59,12 +63,17 @@ const ModalNotifi = (props) => {
                   Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
-              {isError || isLiet &&
+              {isError && isLiet &&
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
-                Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
-              {isNaN && !isLiet &&
+              {isError || isLiet &&
+                <p className="text-base leading-relaxed text-gray-500 pb-3">
+                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                </p>
+              }
+              {isNaN &&
                 <p className="text-lg font-semibold leading-relaxed text-red-400 pb-3">
                   Định dạng phần nhập điểm phải là số (vd: 6.8, 9,...). Vui lòng bạn kiểm tra lại!
                 </p>
