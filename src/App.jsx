@@ -320,7 +320,7 @@ function App() {
   return (
     <>
       <div
-        className="relative h-[100vh] bg-cover bg-top bg-fixed pb-[20px]"
+        className="relative h-[100vh] bg-cover md:bg-top bg-center bg-fixed pb-[20px]"
         style={{ backgroundImage: backgroundImageUrl }}
       >
         <div className="absolute inset-0 backdrop-blur-sm"></div>

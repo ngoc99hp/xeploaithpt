@@ -88,8 +88,6 @@ const ModalInfoPersonal = (props) => {
     )
   }
 
-  console.log(dataWhereInfoSchool)
-
   const handleSubmit =async (e) => {
     e.preventDefault()
     setLoading(true)
