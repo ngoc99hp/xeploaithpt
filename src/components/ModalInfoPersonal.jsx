@@ -43,7 +43,7 @@ const ModalInfoPersonal = (props) => {
       name: "Sinh viên đang học tại Trường"
     },
     {
-      name: "Ngày hội hướng ngiệp 2024"
+      name: "Chương trình tư vấn hướng nghiệp 2024"
     },
     {
       name: "Kênh khác"
