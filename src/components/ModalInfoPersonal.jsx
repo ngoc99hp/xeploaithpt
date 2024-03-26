@@ -25,28 +25,36 @@ const ModalInfoPersonal = (props) => {
   ]
   const dataWhereInfoSchoolNoChecked = [
     {
-      name: "Website của nhà trường"
+      name: "Website của nhà trường",
+      know: "website"
     },
     {
-      name: "Facebook"
+      name: "Facebook",
+      know: "facebook"
     },
     {
-      name: "Tiktok"
+      name: "Tiktok",
+      know: "tiktok"
     },
     {
-      name: "Người thân, bạn bè"
+      name: "Người thân, bạn bè",
+      know: "nguoi_than"
     },
     {
-      name: "Cựu sinh viên của Trường"
+      name: "Cựu sinh viên của Trường",
+      know: "cuu_sv"
     },
     {
-      name: "Sinh viên đang học tại Trường"
+      name: "Sinh viên đang học tại Trường",
+      know: "sv"
     },
     {
-      name: "Chương trình tư vấn hướng nghiệp 2024"
+      name: "Chương trình tư vấn hướng nghiệp 2024",
+      know: "tu_van_hn"
     },
     {
-      name: "Kênh khác"
+      name: "Kênh khác",
+      know: "khac"
     }
   ]
   const [dataWhereInfoSchool, setDataWhereInfoSchool] = useState(dataWhereInfoSchoolNoChecked.map(i => ({ ...i, isChecked: false })))
@@ -62,8 +70,6 @@ const ModalInfoPersonal = (props) => {
   })
   // Em là thí sinh
   const [categoryRadio, setCategoryRadio] = useState(0)
-  // Em biết thông tin cuẩ trường qua đâu
-  const [whereInfoSchoolCheckbox, setWhereInfoSchoolCheckbox] = useState([])
   const [province, setProvince] = useState("")
   const [provinces, setProvinces] = useState([])
   const [isModalNotifiEmail, setIsModalNotifiEmail] = useState(false)
@@ -90,6 +96,15 @@ const ModalInfoPersonal = (props) => {
 
   const handleSubmit =async (e) => {
     e.preventDefault()
+    const tiktok = dataWhereInfoSchool.filter(i => i.know === "tiktok" && i)[0].isChecked
+    const sv = dataWhereInfoSchool.filter(i => i.know === "sv" && i)[0].isChecked
+    const website = dataWhereInfoSchool.filter(i => i.know === "website" && i)[0].isChecked
+    const nguoi_than = dataWhereInfoSchool.filter(i => i.know === "nguoi_than" && i)[0].isChecked
+    const facebook = dataWhereInfoSchool.filter(i => i.know === "facebook" && i)[0].isChecked
+    const cuu_sv = dataWhereInfoSchool.filter(i => i.know === "cuu_sv" && i)[0].isChecked
+    const tu_van_hn = dataWhereInfoSchool.filter(i => i.know === "tu_van_hn" && i)[0].isChecked
+    const khac = dataWhereInfoSchool.filter(i => i.know === "khac" && i)[0].isChecked
+
     setLoading(true)
     const objects = {
       name: infor.name,
@@ -98,7 +113,16 @@ const ModalInfoPersonal = (props) => {
       email: infor.email,
       school: infor.school,
       type_id: categoryRadio + 1,
+      method_id: infoPoint.idMethod,
       major_id: infoPoint.idChuyenNganh,
+      tiktok: tiktok,
+      sv: sv,
+      website: website,
+      nguoi_than: nguoi_than,
+      facebook: facebook,
+      cuu_sv: cuu_sv,
+      tu_van_hn: tu_van_hn,
+      khac: khac,
       scores: {
         data: [
           {
@@ -295,23 +319,21 @@ const ModalInfoPersonal = (props) => {
       //   ]
       // }
     }
+    console.log(sv)
     await insertDataApi(objects)
-      .then(
-        emailjs
-          .send('service_opy2o8e', 'template_3igmq65', objectsEmail, {
-            publicKey: 'MPiUa1f80r2alEFHl'
-          })
-          .then(
-            () => {
-              setIsModalNotifiEmail(true)
-            },
-            (error) => {
-              alert("Gửi email thất bại!")
-            }
-          )
-      )
+      .then(() => emailjs
+        .send('service_56ihxl2', 'template_2ffe3wp', objectsEmail, {
+          publicKey: 'WPTUFvin3GgXt7m8Y'
+        })
+        .then(
+          () => {
+            setIsModalNotifiEmail(true)
+          },
+          (error) => {
+            alert("Gửi email thất bại!")
+          }
+        ))
       .catch(() => setError(true))
-    // console.log(objects)
     setLoading(false)
   }
   return (
@@ -408,14 +430,16 @@ const ModalInfoPersonal = (props) => {
                 </h3>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 text-gray-500'>
                   {dataWhereInfoSchool.map((i, ind) => (
-                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${whereInfoSchoolCheckbox.includes(i.name) ? 'text-primary' : ''} duration-200`}>
-                      <input
-                        className='w-4 h-4'
-                        type="checkbox" name={i.name} id={i.name}
-                        checked={i.isChecked}
-                        onChange={() => handleCheckBox(ind)}
-                      />
-                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
+                    <div key={ind} className={`flex items-center py-1 my-2 cursor-pointer hover:text-primary duration-200`}>
+                      <div className='w-4 h-4'>
+                        <input
+                          className='w-4 h-4'
+                          type="checkbox" name={i.name} id={i.name}
+                          checked={i.isChecked}
+                          onChange={() => handleCheckBox(ind)}
+                        />
+                      </div>
+                      <label className='sm:text-lg pl-2 font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
                     </div>
                   ))}
                 </div>
