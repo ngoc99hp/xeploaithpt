@@ -48,7 +48,7 @@ const ModalNotifiEmail = (props) => {
                 Bạn đã đăng ký thành công!
               </p>
               <p className="text-center">
-                Vui lòng kiểm email để biết kết quả.
+                Vui lòng kiểm tra email để biết kết quả.
               </p>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center px-4 pt-4 border-t border-gray-200 rounded-b">

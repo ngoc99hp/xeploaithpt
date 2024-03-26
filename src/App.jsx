@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ModalNotifi from "./components/ModalNotifi"
-import ModalInfoPersonal from "./components/ModalInfoPersonal"
-import ModalNotifiEmail from "./components/ModalNotifiEmail"
+// import ModalInfoPersonal from "./components/ModalInfoPersonal"
+// import ModalNotifiEmail from "./components/ModalNotifiEmail"
 
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
@@ -647,18 +647,20 @@ function App() {
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 text-gray-500 pl-[20px]">
                       {category.majors?.map((major, majorIndex) => (
                         <div key={major.id} className="flex items-center gap-1">
-                          <input
-                            className="w-4 h-4"
-                            type="radio"
-                            name={category.code}
-                            id= {major.id}
-                            checked={
-                              selectedMajor[categoryIndex] === majorIndex
-                            }
-                            onChange={() =>
-                              handleMajorSelection(categoryIndex, majorIndex)
-                            }
-                          />
+                          <div className="w-4 h-4">
+                            <input
+                              // className="w-4 h-4"
+                              type="radio"
+                              name={category.code}
+                              id= {major.id}
+                              checked={
+                                selectedMajor[categoryIndex] === majorIndex
+                              }
+                              onChange={() =>
+                                handleMajorSelection(categoryIndex, majorIndex)
+                              }
+                            />
+                          </div>
                           <label className="sm:text-lg font-medium cursor-pointer" htmlFor={major.id}>
                             {major.name}
                           </label>
