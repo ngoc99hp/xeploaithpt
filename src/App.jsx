@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ModalNotifi from "./components/ModalNotifi"
-import ModalInfoPersonal from "./components/ModalInfoPersonal"
-import ModalNotifiEmail from "./components/ModalNotifiEmail"
+// import ModalInfoPersonal from "./components/ModalInfoPersonal"
+// import ModalNotifiEmail from "./components/ModalNotifiEmail"
 
 import Logo from "./assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'

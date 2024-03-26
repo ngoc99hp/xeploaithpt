@@ -408,14 +408,16 @@ const ModalInfoPersonal = (props) => {
                 </h3>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 text-gray-500'>
                   {dataWhereInfoSchool.map((i, ind) => (
-                    <div key={ind} className={`flex items-center gap-2 py-1 my-2 cursor-pointer hover:text-primary ${whereInfoSchoolCheckbox.includes(i.name) ? 'text-primary' : ''} duration-200`}>
-                      <input
-                        className='w-4 h-4'
-                        type="checkbox" name={i.name} id={i.name}
-                        checked={i.isChecked}
-                        onChange={() => handleCheckBox(ind)}
-                      />
-                      <label className='sm:text-lg font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
+                    <div key={ind} className={`flex items-center py-1 my-2 cursor-pointer hover:text-primary ${whereInfoSchoolCheckbox.includes(i.name) ? 'text-primary' : ''} duration-200`}>
+                      <div>
+                        <input
+                          className='w-4 h-4'
+                          type="checkbox" name={i.name} id={i.name}
+                          checked={i.isChecked}
+                          onChange={() => handleCheckBox(ind)}
+                        />
+                      </div>
+                      <label className='sm:text-lg pl-2 font-medium cursor-pointer' htmlFor={i.name}>{i.name}</label>
                     </div>
                   ))}
                 </div>
