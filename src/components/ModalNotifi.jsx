@@ -14,10 +14,6 @@ const ModalNotifi = (props) => {
   const isError = infoPoint.num.every(i => i.diem < 15) && infoPoint.num2.every(i => i.diem < 15)
   const isNaN = infoPoint.num.some(i => i.diem === "NaN") || infoPoint.num2.some(i => i.diem === "NaN")
 
-  console.log(isError)
-  console.log(isLiet)
-  console.log(isNaN)
-
   return (
     <>
       <div
