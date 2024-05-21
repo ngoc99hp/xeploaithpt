@@ -1,21 +1,13 @@
 
 
 import Swal from 'sweetalert2'
-<<<<<<< HEAD
 import ExportExcel from './ExportExcel'
-=======
-import TestExcel from '../Test/TestExcel'
->>>>>>> 43653f4f72d99edb4f7d397cc9b7c546790f9bfd
 
 const TableStudents = (props) => {
   const { students, isFetching } = props
   return (
     <div>
-<<<<<<< HEAD
       <ExportExcel students = {students}/>
-=======
-      <TestExcel students = {students}/>
->>>>>>> 43653f4f72d99edb4f7d397cc9b7c546790f9bfd
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         {/* Loading... */}
         {isFetching &&
