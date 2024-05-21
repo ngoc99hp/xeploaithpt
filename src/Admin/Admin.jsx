@@ -31,8 +31,7 @@ const Admin = () => {
     }
     callApi()
   }, [])
-  console.log(students)
-  // console.log(isRole)
+
   return (
     <div>
       <div className='w-full text-right px-4'>
