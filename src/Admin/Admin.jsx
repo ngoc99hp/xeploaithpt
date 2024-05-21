@@ -35,13 +35,9 @@ const Admin = () => {
   // console.log(isRole)
   return (
     <div>
-<<<<<<< HEAD
       <div className='w-full text-right px-4'>
         <SignOutButton/>
       </div>
-=======
-      <SignOutButton/>
->>>>>>> 43653f4f72d99edb4f7d397cc9b7c546790f9bfd
       <h2 className='text-center text-[#666] mb-5'>Danh sách học sinh đăng ký</h2>
       {isRole
         ?
