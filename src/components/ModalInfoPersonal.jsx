@@ -322,8 +322,8 @@ const ModalInfoPersonal = (props) => {
     console.log(sv)
     await insertDataApi(objects)
       .then(() => emailjs
-        .send('service_opy2o8e', 'template_3igmq65', objectsEmail, {
-          publicKey: 'MPiUa1f80r2alEFHl'
+        .send('service_56ihxl2', 'template_2ffe3wp', objectsEmail, {
+          publicKey: 'WPTUFvin3GgXt7m8Y'
         })
         .then(
           () => {
