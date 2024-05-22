@@ -8,6 +8,9 @@ const ModalNotifi = (props) => {
   const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(false)
 
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
+  const arr = Object.values(infoPoint.info)
+  const arrFilter = arr.filter(i => i !== '')
+  const isLiet = arrFilter.some(i => +i <= 1 )
   const isError = infoPoint.num.every(i => i.diem < 15) && infoPoint.num2.every(i => i.diem < 15)
   const isNaN = infoPoint.num.some(i => i.diem === "NaN") || infoPoint.num2.some(i => i.diem === "NaN")
 
@@ -51,14 +54,19 @@ const ModalNotifi = (props) => {
             </div>
             {/* <!-- Modal body --> */}
             <div className="p-4 md:p-5">
-              {!isError && !isNaN &&
+              {!isError && !isNaN && !isLiet &&
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
                   Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
-              {isError &&
+              {isError && isLiet &&
                 <p className="text-base leading-relaxed text-gray-500 pb-3">
-                Rất tiếc bạn không đủ điều kiện để có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                </p>
+              }
+              {isError || isLiet &&
+                <p className="text-base leading-relaxed text-gray-500 pb-3">
+                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
               {isNaN &&
@@ -66,6 +74,11 @@ const ModalNotifi = (props) => {
                   Định dạng phần nhập điểm phải là số (vd: 6.8, 9,...). Vui lòng bạn kiểm tra lại!
                 </p>
               }
+              {/* {isLiet &&
+                <p className="text-lg font-semibold leading-relaxed pb-3">
+                  Rất tiếc, số điểm của bạn không đủ điều kiện xét tuyển! Vui lòng xem lại tính chính xác của thông tin bạn vừa nhập.
+                </p>
+              } */}
               <p>Học kỳ 1:</p>
               <div className='flex gap-6 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num.map(i => (
@@ -87,7 +100,7 @@ const ModalNotifi = (props) => {
               </div>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center px-4 pt-4 border-t border-gray-200 rounded-b">
-                {!isError && !isNaN &&
+                {!isError && !isNaN && !isLiet &&
                   <button onClick={() => setIsModalInfoPersonal(true)} className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     Đăng ký
                   </button>

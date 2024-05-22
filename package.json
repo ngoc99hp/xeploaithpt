@@ -10,16 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.30.10",
     "@emailjs/browser": "^4.3.3",
     "@reduxjs/toolkit": "^1.7.0",
     "axios": "^1.6.7",
+    "exceljs": "^4.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.1.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.22.3",
     "react-select": "^5.8.0",
+    "react-toastify": "^10.0.5",
     "redux": "^4.1.2",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "sweetalert2": "^11.10.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
