@@ -1,22 +1,15 @@
 
 
 import Swal from 'sweetalert2'
-<<<<<<< HEAD
 import ExportExcel from './ExportExcel'
-=======
-import TestExcel from '../Test/TestExcel'
->>>>>>> 43653f4f72d99edb4f7d397cc9b7c546790f9bfd
 
 const TableStudents = (props) => {
   const { students, isFetching } = props
   return (
     <div>
-<<<<<<< HEAD
       <ExportExcel students = {students}/>
-=======
-      <TestExcel students = {students}/>
->>>>>>> 43653f4f72d99edb4f7d397cc9b7c546790f9bfd
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      {/* overflow-x-auto */}
+      <div className="relative  shadow-md sm:rounded-lg">
         {/* Loading... */}
         {isFetching &&
           <div role='status' className='mt-6 animate-pulse w-full'>
@@ -146,6 +139,9 @@ const TableStudents = (props) => {
               <th scope="col" className="px-6 py-3">
                 Khác
               </th>
+              <th scope="col" className="px-6 py-3">
+                Thời gian đăng ký
+              </th>
 
             </tr>
           </thead>
@@ -153,9 +149,15 @@ const TableStudents = (props) => {
             {students && students.map((student, ind) => {
               const diemHk1 = student.scores.filter(i => i.batch.id === 1).sort((a, b) => a.subject.id - b.subject.id)
               const diemHk2 = student.scores.filter(i => i.batch.id === 2).sort((a, b) => a.subject.id - b.subject.id)
+              let date = new Date(student.created_at);
 
-              console.log("hk1", diemHk1)
-              // console.log('diem', monHoc)
+              // Lấy ngày, tháng, năm
+              let day = date.getDate();
+              let month = date.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
+              let year = date.getFullYear();
+
+              // Định dạng ngày, tháng, năm
+              let formattedDate = `${day}-${month}-${year}`;
               return (
                 <tr key={student.id} className="odd:bg-white even:bg-gray-50 border-b">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -215,6 +217,9 @@ const TableStudents = (props) => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {student.khac ? 'Có' : 'Không'}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {formattedDate}
                   </td>
 
                 </tr>
