@@ -323,7 +323,7 @@ const Home = () => {
             className="w-[70%] sm:w-[60%] md:w-1/3 lg:w-1/4 object-contain my-[20px] sm:my-[40px] z-[1]"
           />
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-bold text-primary mb-[40px] z-[1]">
-            ĐĂNG KÝ XÉT TUYỂN ĐẠI HỌC 2024
+            ĐÁNH GIÁ CƠ HỘI TRÚNG TUYỂN 2024
           </h1>
           <form
             onSubmit={handleSubmit}
