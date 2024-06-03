@@ -53,6 +53,7 @@ const ExportExcel = ({students}) => {
     worksheet.getColumn(27).width = 20
     worksheet.getColumn(30).width = 20
     worksheet.getColumn(31).width = 20
+    worksheet.getColumn(33).width = 20
 
     worksheet.mergeCells("G5:O5")
     worksheet.mergeCells("P5:X5")
@@ -90,6 +91,7 @@ const ExportExcel = ({students}) => {
     worksheet.getCell(6, 30).value = "SV của trường"
     worksheet.getCell(6, 31).value = "Người thân"
     worksheet.getCell(6, 32).value = "Khác"
+    worksheet.getCell(6, 33).value = "Ngày đăng ký"
 
     worksheet.getCell(6, 1).alignment = { wrapText: false, vertical: 'middle', horizontal: 'center' }
     worksheet.getCell(6, 2).alignment = { wrapText: false, vertical: 'middle', horizontal: 'center' }
@@ -125,6 +127,7 @@ const ExportExcel = ({students}) => {
     worksheet.getCell(6, 30).alignment = { wrapText: false, vertical: 'middle', horizontal: 'center' }
     worksheet.getCell(6, 31).alignment = { wrapText: false, vertical: 'middle', horizontal: 'center' }
     worksheet.getCell(6, 32).alignment = { wrapText: false, vertical: 'middle', horizontal: 'center' }
+    worksheet.getCell(6, 33).alignment = { wrapText: false, vertical: 'middle', horizontal: 'center' }
 
     worksheet.getCell(6, 1).border = { top: { style:'thin' }, left: { style:'thin' }, right: { style:'thin' }, bottom: { style: 'thin' } }
     worksheet.getCell(6, 2).border = { top: { style:'thin' }, left: { style:'thin' }, right: { style:'thin' }, bottom: { style: 'thin' } }
@@ -160,6 +163,7 @@ const ExportExcel = ({students}) => {
     worksheet.getCell(6, 30).border = { top: { style:'thin' }, left: { style:'thin' }, right: { style:'thin' }, bottom: { style: 'thin' } }
     worksheet.getCell(6, 31).border = { top: { style:'thin' }, left: { style:'thin' }, right: { style:'thin' }, bottom: { style: 'thin' } }
     worksheet.getCell(6, 32).border = { top: { style:'thin' }, left: { style:'thin' }, right: { style:'thin' }, bottom: { style: 'thin' } }
+    worksheet.getCell(6, 33).border = { top: { style:'thin' }, left: { style:'thin' }, right: { style:'thin' }, bottom: { style: 'thin' } }
 
     worksheet.getCell(6, 1).font={ bold: true, name: "Times New Roman" }
     worksheet.getCell(6, 2).font = { bold: true, name: "Times New Roman" }
@@ -195,11 +199,20 @@ const ExportExcel = ({students}) => {
     worksheet.getCell(6, 30).font = { bold: true, name: "Times New Roman" }
     worksheet.getCell(6, 31).font = { bold: true, name: "Times New Roman" }
     worksheet.getCell(6, 32).font = { bold: true, name: "Times New Roman" }
+    worksheet.getCell(6, 33).font = { bold: true, name: "Times New Roman" }
 
     students.forEach((row, rowIndex) => {
       const hk1 = row.scores.filter(item => item.batch.id === 1).sort((a, b) => a.subject.id - b.subject.id)
       const hk2 = row.scores.filter(item => item.batch.id === 2).sort((a, b) => a.subject.id - b.subject.id)
+      let date = new Date(row.created_at)
 
+      // Lấy ngày, tháng, năm
+      let day = date.getDate();
+      let month = date.getMonth() + 1 // Tháng bắt đầu từ 0 nên cần cộng thêm 1
+      let year = date.getFullYear()
+
+      // Định dạng ngày, tháng, năm
+      let formattedDate = `${day}-${month}-${year}`
       worksheet.addRow([
         ++rowIndex,
         row.name,
@@ -216,7 +229,8 @@ const ExportExcel = ({students}) => {
         row.cuu_sv === true ? 'Có' : 'Không',
         row.sv === true ? 'Có' : 'Không',
         row.nguoi_than === true ? 'Có' : 'Không',
-        row.khac === true ? 'Có' : 'Không'
+        row.khac === true ? 'Có' : 'Không',
+        formattedDate
       ])
     })
 
