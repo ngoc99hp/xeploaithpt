@@ -1,9 +1,35 @@
 import { useState } from "react"
 
 
-const ModalNotifiEmail = (props) => {
-  const { setIsModalNotifiEmail } = props
+const ModalScholarship = (props) => {
+  const [dataSelect, setDataSelect] = useState([])
+  // console.log(dataSelect)
 
+  const dataQuestion = [
+    {
+      id: 1,
+      name: "Có hạnh kiểm 3 năm học trung học phở thông tự mức tốt trở lên"
+    },
+    {
+      id: 2,
+      name: "Đạt giải nhất, nhì, ba trong các kỳ thi học sinh giởi cấp tỉnh "
+    },
+    {
+      id: 3,
+      name: "Đạt giải nhất, nhì, ba trong các kỳ thi học sinh giởi cấp quốc gia"
+    }
+  ]
+
+  const handleCheck = (id) => {
+    setDataSelect(prev => {
+      const isChecked = dataSelect.includes(id)
+      if (isChecked) {
+        return dataSelect.filter(i => i !== id)
+      } else {
+        return [...prev, id]
+      }
+    })
+  }
 
   return (
     <>
@@ -18,9 +44,9 @@ const ModalNotifiEmail = (props) => {
           <div className="relative bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-              <h3 className="text-xl font-semibold text-primary">Thông báo</h3>
+              <h3 className="text-xl font-semibold text-primary">Học bổng</h3>
               <button
-                onClick={() => setIsModalNotifiEmail(false)}
+                // onClick={() => setIsModalNotifiEmail(false)}
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                 data-modal-hide="default-modal"
@@ -44,19 +70,21 @@ const ModalNotifiEmail = (props) => {
             </div>
             {/* <!-- Modal body --> */}
             <div className="p-4 md:p-5 space-y-4">
-              <p className="text-base uppercase font-semibold text-center text-primary leading-relaxed">
-                Bạn đã đăng ký thành công!
-              </p>
-              <p className="text-center">
-                Vui lòng kiểm tra email để biết kết quả.
-              </p>
+              {dataQuestion.map((item) => (
+                <div className="flex items-center gap-2" key={item.id}>
+                  <input
+                    type="checkbox"
+                    id={item.name}
+                    checked= {dataSelect.includes(item.id)}
+                    onChange={() => handleCheck(item.id)}
+                  />
+                  <label htmlFor={item.name} className="cursor-pointer select-none">{item.name}</label>
+                </div>
+              ))}
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center gap-2 px-4 pt-4 border-t border-gray-200 rounded-b">
-                <button className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                <button className="text-white bg-[#0083C2] hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                   Đồng ý
-                </button>
-                <button onClick={() => setIsModalNotifiEmail(false)} className="text-red-500 bg-white hover:bg-red-50 border border-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300">
-                  Thoát
                 </button>
               </div>
             </div>
@@ -67,4 +95,4 @@ const ModalNotifiEmail = (props) => {
   );
 };
 
-export default ModalNotifiEmail;
+export default ModalScholarship;

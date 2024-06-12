@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ModalNotifi from "../components/ModalNotifi"
 // import ModalInfoPersonal from "../components/ModalInfoPersonal"
 // import ModalNotifiEmail from "../components/ModalNotifiEmail"
+// import ModalScholarship from "../components/ModalScholarship"
 
 import Logo from "../assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
@@ -32,9 +33,30 @@ const Home = () => {
     // }
   ]
 
-  //const backgroundImageUrl = `url(${BackgroundImage})`
+  const dataQuestion = [
+    {
+      id: 0,
+      name: "Có hạnh kiểm 3 năm học trung học phở thông tự mức tốt trở lên?"
+    },
+    {
+      id: 1,
+      name: "Trong thời gian học THPT, bạn có đạt thành tích cấp quốc gia, quốc tế không?"
+    },
+    {
+      id: 2,
+      name: "Trong thời gian học THPT, bạn có đạt thành tích cấp tỉnh, thành phố không?"
+    },
+    {
+      id: 3,
+      name: "Bạn có thuộc tốp 3 học sinh có điểm trung bình học tập năm lớp 12 tại trường THPT của bạn không?"
+    }
+  ]
+
+
   const backgroundImageUrl = `url(${BackgroundImage2})`
   const dispatch = useDispatch()
+  // Chọn xét học bổng
+  const [dataSelect, setDataSelect] = useState([])
   // Học kỳ
   const [hocKy, setHocKy] = useState(0)
   // ID ngành
@@ -82,112 +104,134 @@ const Home = () => {
       {
         ki: 1,
         code: "A00",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.hoahk1]
       },
       {
         ki: 1,
         code: "A01",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "A02",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.sinhhk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.sinhhk1]
       },
       {
         ki: 1,
         code: "A10",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.gdcdhk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.gdcdhk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.gdcdhk1]
       },
       {
         ki: 1,
         code: "C00",
-        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.suhk1, +infor.diahk1]
       },
       {
         ki: 1,
         code: "C14",
-        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.gdcdhk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.gdcdhk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.vanhk1, +infor.gdcdhk1]
       },
       {
         ki: 1,
         code: "D01",
-        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.vanhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D14",
-        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.suhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.suhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D15",
-        num: (+infor.vanhk1 + +infor.diahk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.diahk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.diahk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D66",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.gdcdhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D84",
-        num: (+infor.vanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.gdcdhk1, +infor.tahk1]
       },
       {
         ki: 2,
         code: "A00",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.hoahk2]
       },
       {
         ki: 2,
         code: "A01",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "A02",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.sinhhk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.sinhhk2]
       },
       {
         ki: 2,
         code: "A10",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.gdcdhk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.gdcdhk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.gdcdhk2]
       },
       {
         ki: 2,
         code: "C00",
-        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.suhk2, +infor.diahk2]
       },
       {
         ki: 2,
         code: "C14",
-        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.gdcdhk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.suhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D01",
-        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.vanhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D14",
-        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.suhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D15",
-        num: (+infor.vanhk2 + +infor.diahk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.diahk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.diahk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D66",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.gdcdhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D84",
-        num: (+infor.vanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.gdcdhk2, +infor.tahk2]
       }
     ])
   }, [infor, majorData])
@@ -197,6 +241,17 @@ const Home = () => {
     setSelectedMajor({ [categoryIndex]: majorIndex })
     setCategoryInd(categoryIndex)
     setMajorInd(majorIndex)
+  }
+
+  const handleCheck = (id) => {
+    setDataSelect(prev => {
+      const isChecked = dataSelect.includes(id)
+      if (isChecked) {
+        return dataSelect.filter(i => i !== id)
+      } else {
+        return [...prev, id]
+      }
+    })
   }
 
   const handleSubmit = (e) => {
@@ -210,7 +265,8 @@ const Home = () => {
       return {
         ki: diemtohopItem.ki,
         tohop: item.combination.code,
-        diem: diemtohopItem ? diemtohopItem.num : 0
+        diem: diemtohopItem ? diemtohopItem.num : 0,
+        point: diemtohopItem ? diemtohopItem.point : []
       }
     })
 
@@ -223,7 +279,8 @@ const Home = () => {
       return {
         ki: diemtohopItem.ki,
         tohop: item.combination.code,
-        diem: diemtohopItem ? diemtohopItem.num : 0
+        diem: diemtohopItem ? diemtohopItem.num : 0,
+        point: diemtohopItem ? diemtohopItem.point : []
       }
     })
 
@@ -662,9 +719,28 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+              {/* Xét học bổng */}
+              <div className="w-full flex flex-col xl:items-center select-none">
+                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
+                  Xét học bổng
+                </h3>
+                <div className="flex flex-col gap-2 text-gray-500">
+                  {dataQuestion.map((item) => (
+                    <div className="flex items-center gap-2" key={item.id}>
+                      <input
+                        type="checkbox"
+                        id={item.name}
+                        checked= {dataSelect.includes(item.id)}
+                        onChange={() => handleCheck(item.id)}
+                      />
+                      <label htmlFor={item.name} className="sm:text-lg font-medium cursor-pointer select-none">{item.name}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <button
                 type="submit"
-                className="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-3 text-center dark:bg-primary/80 dark:hover:bg-primary">
+                className="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-4 text-center dark:bg-primary/80 dark:hover:bg-primary">
                 Xem kết quả
               </button>
             </div>
@@ -672,9 +748,11 @@ const Home = () => {
         </div>
       </div>
       {/* model Notifi */}
-      {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi}/>}
+      {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi} dataSelect={dataSelect}/>}
+      {/* <ModalNotifi/> */}
       {/* <ModalInfoPersonal/> */}
       {/* {<ModalNotifiEmail/>} */}
+      {/* {<ModalScholarship/>} */}
     </>
   )
 }

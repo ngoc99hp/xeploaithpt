@@ -4,10 +4,20 @@ import ModalInfoPersonal from "../components/ModalInfoPersonal"
 
 
 const ModalNotifi = (props) => {
-  const { setIsModalNotifi } = props
+  const { setIsModalNotifi, dataSelect } = props
   const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(false)
 
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
+  console.log(infoPoint)
+  const isScholarship = dataSelect.length > 0
+  const isThan75kh1 = infoPoint.num.map(i => i.point).map(y => y.every(e => e >= 7.5)).some(k => k === true) && infoPoint.num.map(i => i.point).map(y => y.some(e => e < 8.5)).some(k => k === true)
+  const isThan75kh2 = infoPoint.num2.map(i => i.point).map(y => y.every(e => e >= 7.5)).some(k => k === true) && infoPoint.num2.map(i => i.point).map(y => y.some(e => e < 8.5)).some(k => k === true)
+  const isThan85kh1 = infoPoint.num.map(i => i.point).map(y => y.every(e => e >= 8.5)).some(k => k === true)
+  const isThan85kh2 = infoPoint.num2.map(i => i.point).map(y => y.every(e => e >= 8.5)).some(k => k === true)
+
+  const isThan75 = isThan75kh1 || isThan75kh2
+  const isThan85 = isThan85kh1 || isThan85kh2
+
   const arr = Object.values(infoPoint.info)
   const arrFilter = arr.filter(i => i !== '')
   const isLiet = arrFilter.some(i => +i <= 1 )
@@ -74,11 +84,6 @@ const ModalNotifi = (props) => {
                   Định dạng phần nhập điểm phải là số (vd: 6.8, 9,...). Vui lòng bạn kiểm tra lại!
                 </p>
               }
-              {/* {isLiet &&
-                <p className="text-lg font-semibold leading-relaxed pb-3">
-                  Rất tiếc, số điểm của bạn không đủ điều kiện xét tuyển! Vui lòng xem lại tính chính xác của thông tin bạn vừa nhập.
-                </p>
-              } */}
               <p>Học kỳ 1:</p>
               <div className='flex gap-6 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num.map(i => (
@@ -93,10 +98,11 @@ const ModalNotifi = (props) => {
               </div>
               <div>
                 {/* Thông tin học bổng */}
-                <div>
-
-                </div>
-
+                {isScholarship &&
+                  <div>
+                    co hoc bong
+                  </div>
+                }
               </div>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center px-4 pt-4 border-t border-gray-200 rounded-b">
