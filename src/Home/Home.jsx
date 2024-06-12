@@ -36,19 +36,19 @@ const Home = () => {
   const dataQuestion = [
     {
       id: 0,
-      name: "Có hạnh kiểm 3 năm học trung học phở thông tự mức tốt trở lên?"
+      name: "Hạnh kiểm trong 3 năm THPT đều đạt loại tốt trở lên"
     },
     {
       id: 1,
-      name: "Trong thời gian học THPT, bạn có đạt thành tích cấp quốc gia, quốc tế không?"
+      name: "Trong thời gian học THPT, có thành tích (giải nhất, nhì, ba) cấp quốc gia hoặc cấp quốc tế"
     },
     {
       id: 2,
-      name: "Trong thời gian học THPT, bạn có đạt thành tích cấp tỉnh, thành phố không?"
+      name: "Trong thời gian học THPT, có thành tích (giải nhất, nhì, ba) cấp tỉnh/thành phố"
     },
     {
       id: 3,
-      name: "Bạn có thuộc tốp 3 học sinh có điểm trung bình học tập năm lớp 12 tại trường THPT của bạn không?"
+      name: "Thuộc top 3 học sinh có điểm trung bình học tập năm lớp 12 tại trường THPT"
     }
   ]
 
@@ -722,7 +722,7 @@ const Home = () => {
               {/* Xét học bổng */}
               <div className="w-full flex flex-col xl:items-center select-none">
                 <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
-                  Xét học bổng
+                  Thông tin xét học bổng {"tự hào HPU"}
                 </h3>
                 <div className="flex flex-col gap-2 text-gray-500">
                   {dataQuestion.map((item) => (

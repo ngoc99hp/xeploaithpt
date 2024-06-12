@@ -10,7 +10,14 @@ import emailjs from '@emailjs/browser'
 
 
 const ModalInfoPersonal = (props) => {
-  const { setIsModalInfoPersonal } = props
+  const { setIsModalInfoPersonal, dataSelect } = props
+  console.log(dataSelect)
+
+  const question1 = dataSelect.includes(0)
+  const question2 = dataSelect.includes(1)
+  const question3 = dataSelect.includes(2)
+  const question4 = dataSelect.includes(3)
+
   const formRef = useRef()
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
 
@@ -104,6 +111,7 @@ const ModalInfoPersonal = (props) => {
     const cuu_sv = dataWhereInfoSchool.filter(i => i.know === "cuu_sv" && i)[0].isChecked
     const tu_van_hn = dataWhereInfoSchool.filter(i => i.know === "tu_van_hn" && i)[0].isChecked
     const khac = dataWhereInfoSchool.filter(i => i.know === "khac" && i)[0].isChecked
+
 
     setLoading(true)
     const objects = {
@@ -216,7 +224,11 @@ const ModalInfoPersonal = (props) => {
             score: +infoPoint.point.gdcd.diemhk2
           }
         ]
-      }
+      },
+      question1: question1,
+      question2: question2,
+      question3: question3,
+      question4: question4
     }
     const objectsEmail = {
       name: infor.name,
