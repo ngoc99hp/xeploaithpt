@@ -82,112 +82,134 @@ const Home = () => {
       {
         ki: 1,
         code: "A00",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.hoahk1]
       },
       {
         ki: 1,
         code: "A01",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "A02",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.sinhhk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.sinhhk1]
       },
       {
         ki: 1,
         code: "A10",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.gdcdhk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.gdcdhk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.lyhk1, +infor.gdcdhk1]
       },
       {
         ki: 1,
         code: "C00",
-        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.suhk1, +infor.diahk1]
       },
       {
         ki: 1,
         code: "C14",
-        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.gdcdhk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.gdcdhk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.vanhk1, +infor.gdcdhk1]
       },
       {
         ki: 1,
         code: "D01",
-        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.vanhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.vanhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D14",
-        num: (+infor.vanhk1 + +infor.suhk1 + +infor.diahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.suhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.suhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D15",
-        num: (+infor.vanhk1 + +infor.diahk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.diahk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.diahk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D66",
-        num: (+infor.toanhk1 + +infor.lyhk1 + +infor.hoahk1).toFixed(2)
+        num: (+infor.vanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.vanhk1, +infor.gdcdhk1, +infor.tahk1]
       },
       {
         ki: 1,
         code: "D84",
-        num: (+infor.vanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2)
+        num: (+infor.toanhk1 + +infor.gdcdhk1 + +infor.tahk1).toFixed(2),
+        point: [+infor.toanhk1, +infor.gdcdhk1, +infor.tahk1]
       },
       {
         ki: 2,
         code: "A00",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.hoahk2]
       },
       {
         ki: 2,
         code: "A01",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "A02",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.sinhhk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.sinhhk2]
       },
       {
         ki: 2,
         code: "A10",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.gdcdhk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.gdcdhk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.lyhk2, +infor.gdcdhk2]
       },
       {
         ki: 2,
         code: "C00",
-        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.suhk2, +infor.diahk2]
       },
       {
         ki: 2,
         code: "C14",
-        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.gdcdhk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.suhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D01",
-        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.vanhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.vanhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D14",
-        num: (+infor.vanhk2 + +infor.suhk2 + +infor.diahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.suhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.suhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D15",
-        num: (+infor.vanhk2 + +infor.diahk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.diahk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.diahk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D66",
-        num: (+infor.toanhk2 + +infor.lyhk2 + +infor.hoahk2).toFixed(2)
+        num: (+infor.vanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.vanhk2, +infor.gdcdhk2, +infor.tahk2]
       },
       {
         ki: 2,
         code: "D84",
-        num: (+infor.vanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2)
+        num: (+infor.toanhk2 + +infor.gdcdhk2 + +infor.tahk2).toFixed(2),
+        point: [+infor.toanhk2, +infor.gdcdhk2, +infor.tahk2]
       }
     ])
   }, [infor, majorData])
