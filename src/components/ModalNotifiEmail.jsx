@@ -52,10 +52,7 @@ const ModalNotifiEmail = (props) => {
               </p>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center gap-2 px-4 pt-4 border-t border-gray-200 rounded-b">
-                <button className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                  Đồng ý
-                </button>
-                <button onClick={() => setIsModalNotifiEmail(false)} className="text-red-500 bg-white hover:bg-red-50 border border-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-300">
+                <button onClick={() => setIsModalNotifiEmail(false)} className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                   Thoát
                 </button>
               </div>

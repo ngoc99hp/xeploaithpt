@@ -3,24 +3,39 @@ import TextInput from '../textInput'
 import ModalNotifiEmail from './ModalNotifiEmail'
 import ModalNotifiError from './ModalNotifiError'
 import Select from 'react-select'
-import { getProvinceApi, insertDataApi } from "../api/index"
+import { getProvinceApi, insertDataApi, getScholarshipsApi } from "../api/index"
 import { useDispatch, useSelector } from "react-redux"
 
 import emailjs from '@emailjs/browser'
 
 
 const ModalInfoPersonal = (props) => {
-  const { setIsModalInfoPersonal, dataSelect } = props
-  console.log(dataSelect)
+  const { setIsModalInfoPersonal, dataSelect, isThan75, isThan85 } = props
+  // console.log(dataSelect)
 
   const question1 = dataSelect.includes(0)
   const question2 = dataSelect.includes(1)
   const question3 = dataSelect.includes(2)
   const question4 = dataSelect.includes(3)
 
+  let scholarship
+  if (question1) {
+    if (question2) {
+      scholarship = '60'
+    } else if (question3 || question4) {
+      scholarship = '45'
+    } else if (isThan75) {
+      scholarship = '15'
+    } else if (isThan85) {
+      scholarship = '30'
+    }
+  } else {
+    scholarship = '0'
+  }
+
+
   const formRef = useRef()
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
-
 
   const dataCategory = [
     {
@@ -79,13 +94,44 @@ const ModalInfoPersonal = (props) => {
   const [categoryRadio, setCategoryRadio] = useState(0)
   const [province, setProvince] = useState("")
   const [provinces, setProvinces] = useState([])
+  const [scholarshipsList, setScholarshipsList] = useState([])
   const [isModalNotifiEmail, setIsModalNotifiEmail] = useState(false)
 
 
+  // useEffect(() => {
+  //   getProvinceApi()
+  //     .then((res) => setProvinces(res.result))
+  // }, [])
+
+  // useEffect(() => {
+  //   getScholarshipsApi()
+  //     .then((res) => setScholarshipsList(res.result))
+  // }, [])
+
   useEffect(() => {
-    getProvinceApi()
-      .then((res) => setProvinces(res.result))
-  }, [])
+    const fetchData = async () => {
+      try {
+        const [response1, response2] = await Promise.all([
+          getProvinceApi(),
+          getScholarshipsApi()
+        ])
+
+        const data1 = await response1
+        const data2 = await response2
+
+        setProvinces(data1.result)
+        setScholarshipsList(data2.result)
+      } catch (error) {
+        console.log(error.message)
+      }
+    }
+    fetchData()
+  }, []);
+
+  console.log(scholarshipsList)
+
+  const idScholarship = scholarshipsList.length > 0 && scholarshipsList.filter(i => i.num === +scholarship)[0].id
+  console.log("idScholarships", idScholarship)
 
   const handleCheckBox = (ind) => {
     setDataWhereInfoSchool(
@@ -228,7 +274,8 @@ const ModalInfoPersonal = (props) => {
       question1: question1,
       question2: question2,
       question3: question3,
-      question4: question4
+      question4: question4,
+      scholarship_id: idScholarship
     }
     const objectsEmail = {
       name: infor.name,
@@ -236,115 +283,41 @@ const ModalInfoPersonal = (props) => {
       email: infor.email,
       school: infor.school,
       major: infoPoint.chuyenNganh,
-      // scores: {
-      //   data: [
-      //     {
-      //       subject_id: 1,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.toan.diemhk1
-      //     },
-      //     {
-      //       subject_id: 1,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.toan.diemhk2
-      //     },
-      //     {
-      //       subject_id: 2,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.ly.diemhk1
-      //     },
-      //     {
-      //       subject_id: 2,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.ly.diemhk2
-      //     },
-      //     {
-      //       subject_id: 3,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.hoa.diemhk1
-      //     },
-      //     {
-      //       subject_id: 3,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.hoa.diemhk2
-      //     },
-      //     {
-      //       subject_id: 4,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.sinh.diemhk1
-      //     },
-      //     {
-      //       subject_id: 4,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.sinh.diemhk2
-      //     },
-      //     {
-      //       subject_id: 5,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.van.diemhk1
-      //     },
-      //     {
-      //       subject_id: 5,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.van.diemhk2
-      //     },
-      //     {
-      //       subject_id: 6,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.su.diemhk1
-      //     },
-      //     {
-      //       subject_id: 6,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.su.diemhk2
-      //     },
-      //     {
-      //       subject_id: 7,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.dia.diemhk1
-      //     },
-      //     {
-      //       subject_id: 7,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.dia.diemhk2
-      //     },
-      //     {
-      //       subject_id: 8,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.ta.diemhk1
-      //     },
-      //     {
-      //       subject_id: 8,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.ta.diemhk2
-      //     },
-      //     {
-      //       subject_id: 9,
-      //       batch_id: 1,
-      //       score: +infoPoint.point.gdcd.diemhk1
-      //     },
-      //     {
-      //       subject_id: 9,
-      //       batch_id: 2,
-      //       score: +infoPoint.point.gdcd.diemhk2
-      //     }
-      //   ]
-      // }
+      scholarship: scholarship
     }
     console.log(sv)
     await insertDataApi(objects)
-      .then(() => emailjs
-        .send('service_56ihxl2', 'template_2ffe3wp', objectsEmail, {
-          publicKey: 'WPTUFvin3GgXt7m8Y'
-        })
-        .then(
-          () => {
-            setIsModalNotifiEmail(true)
-          },
-          (error) => {
-            alert("Gửi email thất bại!")
-          }
-        ))
+      .then(() =>{
+        if (question1 || question2 || question3 || question4) {
+          // console.log('sa')
+          emailjs
+            .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
+              publicKey: 'WPTUFvin3GgXt7m8Y'
+            })
+            .then(
+              () => {
+                setIsModalNotifiEmail(true)
+              },
+              (error) => {
+                alert("Gửi email thất bại!")
+              }
+            )
+        } else {
+          emailjs
+            .send('service_56ihxl2', 'template_2ffe3wp', objectsEmail, {
+              publicKey: 'WPTUFvin3GgXt7m8Y'
+            })
+            .then(
+              () => {
+                setIsModalNotifiEmail(true)
+              },
+              (error) => {
+                alert("Gửi email thất bại!")
+              }
+            )
+        }
+      }
+      )
       .catch(() => setError(true))
     setLoading(false)
   }

@@ -22,8 +22,8 @@ const ModalNotifi = (props) => {
 
   const scholarship15 = (isThan75 && (dataSelect && dataSelect.includes(0)))
   const scholarship30 = isThan85 && (dataSelect && dataSelect.includes(0))
-  const scholarship45 = isThan85 && (dataSelect && dataSelect.includes(0)) && (dataSelect && dataSelect.includes(2) || dataSelect && dataSelect.includes(3))
-  const scholarship60 = isThan85 && (dataSelect && dataSelect.includes(0)) && (dataSelect && dataSelect.includes(1))
+  const scholarship45 = (dataSelect && dataSelect.includes(0)) && (dataSelect && dataSelect.includes(2) || dataSelect && dataSelect.includes(3))
+  const scholarship60 = (dataSelect && dataSelect.includes(0)) && (dataSelect && dataSelect.includes(1))
 
   // console.log({
   //   scholarship15: scholarship15,
@@ -113,9 +113,9 @@ const ModalNotifi = (props) => {
                 {/* Thông tin học bổng */}
                 <hr className="w-48 h-1 mx-auto my-3 bg-primary/20 border-0 rounded"></hr>
                 {isScholarship &&
-                  <div>
+                  <div className="my-5">
                     {scholarship15 && !scholarship30 && !scholarship45 && !scholarship60 &&
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2">
                         <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">15.000.000</span> đồng từ Nhà trường</p>
                         <div className="animate-shake">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
@@ -128,7 +128,7 @@ const ModalNotifi = (props) => {
 
                     {
                       ((!scholarship15 && scholarship30 && !scholarship45 && !scholarship60) || (scholarship15 && scholarship30 && !scholarship45 && !scholarship60)) &&
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2">
                         <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">30.000.000</span> đồng từ Nhà trường</p>
                         <div className="animate-shake">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
@@ -140,7 +140,7 @@ const ModalNotifi = (props) => {
                     }
 
                     {scholarship45 && !scholarship60 &&
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-2">
                       <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">45.000.000</span> đồng từ Nhà trường</p>
                       <div className="animate-shake">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
@@ -152,7 +152,7 @@ const ModalNotifi = (props) => {
                     }
 
                     {scholarship60 &&
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2">
                         <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">60.000.000</span> đồng từ Nhà trường</p>
                         <div className="animate-shake">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
@@ -186,6 +186,8 @@ const ModalNotifi = (props) => {
         <ModalInfoPersonal
           setIsModalInfoPersonal = {setIsModalInfoPersonal}
           dataSelect = {dataSelect}
+          isThan75 = {isThan75}
+          isThan85 = {isThan85}
         />
       )}
     </>

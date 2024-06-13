@@ -722,7 +722,7 @@ const Home = () => {
               {/* Xét học bổng */}
               <div className="w-full flex flex-col xl:items-center select-none">
                 <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
-                  Thông tin xét học bổng {"tự hào HPU"}
+                  Thông tin xét học bổng &quot;Tự hào HPU&quot;
                 </h3>
                 <div className="flex flex-col gap-2 text-gray-500">
                   {dataQuestion.map((item) => (
