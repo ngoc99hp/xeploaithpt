@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { SignOutButton } from '@clerk/clerk-react'
 import { useUser, useAuth } from "@clerk/clerk-react"
+import { getStudentsListApi } from "../api/index"
+
 
 import TableStudents from './TableStudents'
 

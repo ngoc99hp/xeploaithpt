@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import ModalNotifi from "../components/ModalNotifi"
 // import ModalInfoPersonal from "../components/ModalInfoPersonal"
 // import ModalNotifiEmail from "../components/ModalNotifiEmail"
+// import ModalScholarship from "../components/ModalScholarship"
 
 import Logo from "../assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
@@ -32,9 +33,30 @@ const Home = () => {
     // }
   ]
 
-  //const backgroundImageUrl = `url(${BackgroundImage})`
+  const dataQuestion = [
+    {
+      id: 0,
+      name: "Hạnh kiểm trong 3 năm THPT đều đạt loại tốt trở lên"
+    },
+    {
+      id: 1,
+      name: "Trong thời gian học THPT, có thành tích (giải nhất, nhì, ba) cấp quốc gia hoặc cấp quốc tế"
+    },
+    {
+      id: 2,
+      name: "Trong thời gian học THPT, có thành tích (giải nhất, nhì, ba) cấp tỉnh/thành phố"
+    },
+    {
+      id: 3,
+      name: "Thuộc top 3 học sinh có điểm trung bình học tập năm lớp 12 tại trường THPT"
+    }
+  ]
+
+
   const backgroundImageUrl = `url(${BackgroundImage2})`
   const dispatch = useDispatch()
+  // Chọn xét học bổng
+  const [dataSelect, setDataSelect] = useState([])
   // Học kỳ
   const [hocKy, setHocKy] = useState(0)
   // ID ngành
@@ -221,6 +243,17 @@ const Home = () => {
     setMajorInd(majorIndex)
   }
 
+  const handleCheck = (id) => {
+    setDataSelect(prev => {
+      const isChecked = dataSelect.includes(id)
+      if (isChecked) {
+        return dataSelect.filter(i => i !== id)
+      } else {
+        return [...prev, id]
+      }
+    })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const numMajorUpdated = majorData[categoryInd].majors[
@@ -232,7 +265,8 @@ const Home = () => {
       return {
         ki: diemtohopItem.ki,
         tohop: item.combination.code,
-        diem: diemtohopItem ? diemtohopItem.num : 0
+        diem: diemtohopItem ? diemtohopItem.num : 0,
+        point: diemtohopItem ? diemtohopItem.point : []
       }
     })
 
@@ -245,7 +279,8 @@ const Home = () => {
       return {
         ki: diemtohopItem.ki,
         tohop: item.combination.code,
-        diem: diemtohopItem ? diemtohopItem.num : 0
+        diem: diemtohopItem ? diemtohopItem.num : 0,
+        point: diemtohopItem ? diemtohopItem.point : []
       }
     })
 
@@ -684,9 +719,28 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+              {/* Xét học bổng */}
+              <div className="w-full flex flex-col xl:items-center select-none">
+                <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">
+                  Thông tin xét học bổng &quot;Tự hào HPU&quot;
+                </h3>
+                <div className="flex flex-col gap-2 text-gray-500">
+                  {dataQuestion.map((item) => (
+                    <div className="flex items-center gap-2" key={item.id}>
+                      <input
+                        type="checkbox"
+                        id={item.name}
+                        checked= {dataSelect.includes(item.id)}
+                        onChange={() => handleCheck(item.id)}
+                      />
+                      <label htmlFor={item.name} className="sm:text-lg font-medium cursor-pointer select-none">{item.name}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <button
                 type="submit"
-                className="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-3 text-center dark:bg-primary/80 dark:hover:bg-primary">
+                className="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-4 text-center dark:bg-primary/80 dark:hover:bg-primary">
                 Xem kết quả
               </button>
             </div>
@@ -694,9 +748,11 @@ const Home = () => {
         </div>
       </div>
       {/* model Notifi */}
-      {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi}/>}
+      {isModalNotifi && <ModalNotifi setIsModalNotifi={setIsModalNotifi} dataSelect={dataSelect}/>}
+      {/* <ModalNotifi/> */}
       {/* <ModalInfoPersonal/> */}
       {/* {<ModalNotifiEmail/>} */}
+      {/* {<ModalScholarship/>} */}
     </>
   )
 }
