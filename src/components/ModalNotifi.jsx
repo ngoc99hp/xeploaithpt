@@ -97,16 +97,16 @@ const ModalNotifi = (props) => {
                   Định dạng phần nhập điểm phải là số (vd: 6.8, 9,...). Vui lòng bạn kiểm tra lại!
                 </p>
               }
-              <p>Học kỳ 1:</p>
-              <div className='flex gap-6 flex-wrap mb-3'>
+              <p className="py-3">Học kỳ 1:</p>
+              <div className='flex gap-y-2 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num.map(i => (
-                  <p key={i.tohop} className='font-semibold'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
+                  <p key={i.tohop} className='font-semibold w-[50%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
                 ))}
               </div>
-              <p>Học kỳ 2:</p>
-              <div className='flex gap-6 flex-wrap mb-3'>
+              <p className="py-3">Học kỳ 2:</p>
+              <div className='flex gap-y-2 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num2.map(i => (
-                  <p key={i.tohop} className='font-semibold'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
+                  <p key={i.tohop} className='font-semibold w-[50%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
                 ))}
               </div>
               <div>
