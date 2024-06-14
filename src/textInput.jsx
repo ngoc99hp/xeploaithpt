@@ -25,7 +25,7 @@ const TextInput = ({
         id={id}
         className={`${
           disable ? "!bg-bordercl cursor-not-allowed" : ""
-        } block px-2.5 pb-2.5 pt-4 w-full text-sm text-black bg-opacity-0 rounded-[5px] border-[1px] border-gray-300 appearance-none focus:outline-none focus:ring-0  peer`}
+        } block px-2.5 pb-2.5 pt-4 w-full text-[16px] text-black bg-opacity-0 rounded-[5px] border-[1px] border-gray-300 appearance-none focus:outline-none focus:ring-0 peer`}
         placeholder=""
         value={value}
         step={step}
