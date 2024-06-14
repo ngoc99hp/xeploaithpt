@@ -78,17 +78,17 @@ const ModalNotifi = (props) => {
             {/* <!-- Modal body --> */}
             <div className="p-4 md:p-5">
               {!isError && !isNaN && !isLiet &&
-                <p className="text-base leading-relaxed text-gray-500 pb-3">
+                <p className="text-base leading-relaxed text-gray-500 text-justify pb-3">
                   Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
               {isError && isLiet &&
-                <p className="text-base leading-relaxed text-gray-500 pb-3">
+                <p className="text-base leading-relaxed text-gray-500 text-justify pb-3">
                   Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
               {isError || isLiet &&
-                <p className="text-base leading-relaxed text-gray-500 pb-3">
+                <p className="text-base leading-relaxed text-gray-500 text-justify pb-3">
                   Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
