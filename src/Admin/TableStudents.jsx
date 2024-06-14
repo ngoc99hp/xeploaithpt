@@ -251,8 +251,6 @@ const TableStudents = (props) => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     {student.khac ? 'Có' : 'Không'}
                   </td>
-                  
-
                 </tr>
               )
             }
