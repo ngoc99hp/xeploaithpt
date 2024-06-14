@@ -37,6 +37,9 @@ const TableStudents = (props) => {
                 STT
               </th>
               <th scope="col" className="px-6 py-3">
+                Thời gian đăng ký
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Họ và tên
               </th>
               <th scope="col" className="px-6 py-3">
@@ -50,6 +53,22 @@ const TableStudents = (props) => {
               </th>
               <th scope="col" className="px-6 py-3">
                 Phương thức xét tuyển
+              </th>
+              {/* hoc bong */}
+              <th scope="col" className="px-6 py-3">
+                Câu 1
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Câu 2
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Câu 3
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Câu 4
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Học bổng
               </th>
               <th scope="col" className="px-6 py-3">
                 Toán HKI
@@ -138,10 +157,6 @@ const TableStudents = (props) => {
               <th scope="col" className="px-6 py-3">
                 Khác
               </th>
-              <th scope="col" className="px-6 py-3">
-                Thời gian đăng ký
-              </th>
-
             </tr>
           </thead>
           <tbody>
@@ -163,6 +178,9 @@ const TableStudents = (props) => {
                     {ind + 1}
                   </th>
                   <td className="px-6 py-4 whitespace-nowrap">
+                    {formattedDate}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
                     {student.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -176,6 +194,22 @@ const TableStudents = (props) => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {student.method.name}
+                  </td>
+                  {/* hoc bong */}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {student.question1 === null ? '...' : (student.question1 ? 'Có' : 'Không')}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {student.question2 === null ? '...' : (student.question2 ? 'Có' : 'Không')}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {student.question3 === null ? '...' : (student.question3 ? 'Có' : 'Không')}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {student.question4 === null ? '...' : (student.question4 ? 'Có' : 'Không')}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {student.scholarship === null ? '...' : (student.scholarship.name)}
                   </td>
                   {diemHk1.map((i, index) =>
                     <td key={index} className="px-6 py-4 whitespace-nowrap">
@@ -217,9 +251,7 @@ const TableStudents = (props) => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     {student.khac ? 'Có' : 'Không'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {formattedDate}
-                  </td>
+                  
 
                 </tr>
               )

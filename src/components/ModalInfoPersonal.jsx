@@ -285,11 +285,9 @@ const ModalInfoPersonal = (props) => {
       major: infoPoint.chuyenNganh,
       scholarship: scholarship
     }
-    console.log(sv)
     await insertDataApi(objects)
       .then(() =>{
         if (question1 || question2 || question3 || question4) {
-          // console.log('sa')
           emailjs
             .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
               publicKey: 'WPTUFvin3GgXt7m8Y'
@@ -318,8 +316,11 @@ const ModalInfoPersonal = (props) => {
         }
       }
       )
-      .catch(() => setError(true))
-    setLoading(false)
+      .then(() => setLoading(false))
+      .catch(() => {
+        setError(true)
+        setLoading(false)
+      })
   }
   return (
     <>
