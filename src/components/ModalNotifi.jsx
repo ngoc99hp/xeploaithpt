@@ -79,7 +79,8 @@ const ModalNotifi = (props) => {
             <div className="p-4 md:p-5">
               {!isError && !isNaN && !isLiet &&
                 <p className="text-base leading-relaxed text-gray-500 text-justify pb-3">
-                  Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                  Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>.
+                  Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
               {isError && isLiet &&
@@ -100,13 +101,13 @@ const ModalNotifi = (props) => {
               <p className="py-3">Học kỳ 1:</p>
               <div className='flex gap-y-2 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num.map(i => (
-                  <p key={i.tohop} className='font-semibold w-[50%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
+                  <p key={i.tohop} className='font-semibold w-[50%] md:w-[25%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
                 ))}
               </div>
               <p className="py-3">Học kỳ 2:</p>
               <div className='flex gap-y-2 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num2.map(i => (
-                  <p key={i.tohop} className='font-semibold w-[50%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
+                  <p key={i.tohop} className='font-semibold w-[50%] md:w-[25%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
                 ))}
               </div>
               <div>

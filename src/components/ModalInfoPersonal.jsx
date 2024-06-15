@@ -21,16 +21,16 @@ const ModalInfoPersonal = (props) => {
   let scholarship
   if (question1) {
     if (question2) {
-      scholarship = '60'
+      scholarship = 60
     } else if (question3 || question4) {
-      scholarship = '45'
+      scholarship = 45
     } else if (isThan75) {
-      scholarship = '15'
+      scholarship = 15
     } else if (isThan85) {
-      scholarship = '30'
+      scholarship = 30
     }
   } else {
-    scholarship = '0'
+    scholarship = 0
   }
 
 
@@ -97,17 +97,6 @@ const ModalInfoPersonal = (props) => {
   const [scholarshipsList, setScholarshipsList] = useState([])
   const [isModalNotifiEmail, setIsModalNotifiEmail] = useState(false)
 
-
-  // useEffect(() => {
-  //   getProvinceApi()
-  //     .then((res) => setProvinces(res.result))
-  // }, [])
-
-  // useEffect(() => {
-  //   getScholarshipsApi()
-  //     .then((res) => setScholarshipsList(res.result))
-  // }, [])
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -126,12 +115,9 @@ const ModalInfoPersonal = (props) => {
       }
     }
     fetchData()
-  }, []);
+  }, [])
 
-  console.log(scholarshipsList)
-
-  const idScholarship = scholarshipsList.length > 0 && scholarshipsList.filter(i => i.num === +scholarship)[0].id
-  console.log("idScholarships", idScholarship)
+  const idScholarship = scholarshipsList.length > 0 && scholarshipsList.filter(i => i.num === scholarship)[0]
 
   const handleCheckBox = (ind) => {
     setDataWhereInfoSchool(
@@ -275,7 +261,7 @@ const ModalInfoPersonal = (props) => {
       question2: question2,
       question3: question3,
       question4: question4,
-      scholarship_id: idScholarship
+      scholarship_id: idScholarship.id
     }
     const objectsEmail = {
       name: infor.name,
@@ -283,10 +269,10 @@ const ModalInfoPersonal = (props) => {
       email: infor.email,
       school: infor.school,
       major: infoPoint.chuyenNganh,
-      scholarship: scholarship
+      scholarship: idScholarship.name
     }
     await insertDataApi(objects)
-      .then(() =>{
+      .then(() => {
         if (question1 || question2 || question3 || question4) {
           emailjs
             .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
