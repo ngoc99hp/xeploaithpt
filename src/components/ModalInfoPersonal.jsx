@@ -273,7 +273,7 @@ const ModalInfoPersonal = (props) => {
     }
     await insertDataApi(objects)
       .then(() => {
-        if (question1 || question2 || question3 || question4) {
+        if (question1 && ( question2 || question3 || question4)) {
           emailjs
             .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
               publicKey: 'WPTUFvin3GgXt7m8Y'
