@@ -10,6 +10,7 @@ const TextInput = ({
   disable,
   id,
   onChange,
+  onBlur,
   min,
   max,
   name
@@ -30,6 +31,7 @@ const TextInput = ({
         value={value}
         step={step}
         onChange={onChange}
+        onBlur={onBlur}
         min={min}
         max={max}
         name={name}

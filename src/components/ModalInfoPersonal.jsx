@@ -96,6 +96,7 @@ const ModalInfoPersonal = (props) => {
   const [provinces, setProvinces] = useState([])
   const [scholarshipsList, setScholarshipsList] = useState([])
   const [isModalNotifiEmail, setIsModalNotifiEmail] = useState(false)
+  const [isValid, setIsValid] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,6 +119,22 @@ const ModalInfoPersonal = (props) => {
   }, [])
 
   const idScholarship = scholarshipsList.length > 0 && scholarshipsList.filter(i => i.num === scholarship)[0]
+  const validatePhoneNumber = (number) => {
+    // Regular Expression for phone number validation
+    const phoneRegex = /^\d{10}$/
+    return phoneRegex.test(number)
+  }
+
+  const handleChangePhoneNumber = (event) => {
+    const { value } = event.target
+    setInfor({ ...infor, phoneNumber: value })
+    setIsValid(validatePhoneNumber(value))
+  }
+
+  // const handleBlur = () => {
+  //   {!isValid && alert('Số điện thoại không hợp lệ!')}
+  //   console.log("blur")
+  // }
 
   const handleCheckBox = (ind) => {
     setDataWhereInfoSchool(
@@ -135,6 +152,10 @@ const ModalInfoPersonal = (props) => {
 
   const handleSubmit =async (e) => {
     e.preventDefault()
+    if (!isValid) {
+      alert('Số điện thoại không hợp lệ!')
+      return
+    }
     const tiktok = dataWhereInfoSchool.filter(i => i.know === "tiktok" && i)[0].isChecked
     const sv = dataWhereInfoSchool.filter(i => i.know === "sv" && i)[0].isChecked
     const website = dataWhereInfoSchool.filter(i => i.know === "website" && i)[0].isChecked
@@ -365,7 +386,9 @@ const ModalInfoPersonal = (props) => {
                     label={"Số điện thoại"}
                     id={"Số điện thoại"}
                     value={infor.phoneNumber}
-                    onChange={(e) => setInfor({ ...infor, phoneNumber: e.target.value })}
+                    // onChange={(e) => setInfor({ ...infor, phoneNumber: e.target.value })}
+                    onChange={handleChangePhoneNumber}
+                    // onBlur={handleBlur}
                   />
                   <TextInput
                     require
