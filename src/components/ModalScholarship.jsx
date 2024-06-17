@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-
 const ModalScholarship = (props) => {
   const [dataSelect, setDataSelect] = useState([])
   // console.log(dataSelect)

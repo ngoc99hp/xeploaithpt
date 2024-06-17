@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useSelector } from 'react-redux'
 import ModalInfoPersonal from "../components/ModalInfoPersonal"
 
-
 const ModalNotifi = (props) => {
   const { setIsModalNotifi, dataSelect } = props
   const [isModalInfoPersonal, setIsModalInfoPersonal] = useState(false)
@@ -24,13 +23,6 @@ const ModalNotifi = (props) => {
   const scholarship30 = isThan85 && (dataSelect && dataSelect.includes(0))
   const scholarship45 = (dataSelect && dataSelect.includes(0)) && (dataSelect && dataSelect.includes(2) || dataSelect && dataSelect.includes(3))
   const scholarship60 = (dataSelect && dataSelect.includes(0)) && (dataSelect && dataSelect.includes(1))
-
-  // console.log({
-  //   scholarship15: scholarship15,
-  //   scholarship30: scholarship30,
-  //   scholarship45: scholarship45,
-  //   scholarship60: scholarship60
-  // })
 
   const arr = Object.values(infoPoint.info)
   const arrFilter = arr.filter(i => i !== '')
@@ -192,7 +184,7 @@ const ModalNotifi = (props) => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default ModalNotifi;
+export default ModalNotifi

@@ -16,19 +16,6 @@ const NumberInput = ({
   max,
   name
 }) => {
-  const [inputValue, setInputValue] = useState('')
-  // Regular expression to match valid numbers (integer or decimal)
-  const numberRegex = /^(\d+(\.\d*)?)?$/
-
-  const handleChange = (e) => {
-    const { value } = e.target
-
-    // If the value matches the regex or is empty, update the state
-    if (numberRegex.test(value)) {
-      setInputValue(value)
-    }
-  }
-
   return (
     <div className={` ${className ? className : ""} w-full relative `}>
       <input
