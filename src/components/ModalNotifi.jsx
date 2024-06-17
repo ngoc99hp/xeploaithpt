@@ -130,7 +130,7 @@ const ModalNotifi = (props) => {
                   infoPoint?.num.map((i) => (
                     <p
                       key={i.tohop}
-                      className="font-semibold w-[50%] md:w-[18%] flex justify-between"
+                      className="font-semibold w-[50%] md:w-[18%] flex justify-start gap-2"
                     >
                       <span className="font-semibold">{i.tohop}:{" "}</span>
                       <span className="text-red-400">{i.diem} điểm</span>
@@ -138,15 +138,14 @@ const ModalNotifi = (props) => {
                   ))}
               </div>
               <p className="py-3">Học kỳ 2:</p>
-              <div 
-                // className="flex gap-y-2 flex-wrap mb-3"
+              <div
                 className="flex gap-y-2 flex-wrap mb-3 justify-between"
               >
                 {infoPoint &&
                   infoPoint?.num2.map((i) => (
                     <p
                       key={i.tohop}
-                      className="font-semibold w-[50%] md:w-[18%] flex justify-between"
+                      className="ffont-semibold w-[50%] md:w-[18%] flex justify-start gap-2"
                     >
                       <span className="font-semibold">{i.tohop}:{" "}</span>
                       <span className="text-red-400">{i.diem} điểm</span>
