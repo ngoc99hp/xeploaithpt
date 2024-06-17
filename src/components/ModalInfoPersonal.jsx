@@ -8,11 +8,8 @@ import { useDispatch, useSelector } from "react-redux"
 
 import emailjs from '@emailjs/browser'
 
-
 const ModalInfoPersonal = (props) => {
-  const { setIsModalInfoPersonal, isThan75, isThan85 } = props
-  // console.log(dataSelect)
-  const dataSelect = [0, 1, 2]
+  const { setIsModalInfoPersonal, dataSelect, isThan75, isThan85 } = props
 
   const question1 = dataSelect.includes(0)
   const question2 = dataSelect.includes(1)
@@ -36,6 +33,9 @@ const ModalInfoPersonal = (props) => {
 
 
   const formRef = useRef()
+  const inputPhoneNumberRef = useRef()
+  const inputEmailRef = useRef()
+
   const infoPoint = useSelector((state) => state.infoPoint.currentData)
 
   const dataCategory = [
@@ -98,6 +98,7 @@ const ModalInfoPersonal = (props) => {
   const [scholarshipsList, setScholarshipsList] = useState([])
   const [isModalNotifiEmail, setIsModalNotifiEmail] = useState(false)
   const [isValid, setIsValid] = useState(true)
+  const [isValidEmail, setIsValidEmail] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -125,6 +126,11 @@ const ModalInfoPersonal = (props) => {
     return phoneRegex.test(number)
   }
 
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return re.test(String(email).toLowerCase())
+  }
+
   const handleChangePhoneNumber = (event) => {
     const { value } = event.target
     setInfor({ ...infor, phoneNumber: value })
@@ -134,9 +140,15 @@ const ModalInfoPersonal = (props) => {
   const handleBlur = () => {
     if (!isValid) {
       alert("Số điện thoại không hợp lệ!")
+      // inputPhoneNumberRef.current.focus()
     }
   }
-
+  const handleBlurEmail = () => {
+    if (!isValidEmail) {
+      alert("Email không hợp lệ!")
+      // inputEmailRef.current.focus()
+    }
+  }
 
   const handleCheckBox = (ind) => {
     setDataWhereInfoSchool(
@@ -156,6 +168,10 @@ const ModalInfoPersonal = (props) => {
     e.preventDefault()
     if (!isValid) {
       alert('Số điện thoại không hợp lệ!')
+      return
+    }
+    if (!isValidEmail) {
+      alert('Email không hợp lệ!')
       return
     }
     const tiktok = dataWhereInfoSchool.filter(i => i.know === "tiktok" && i)[0].isChecked
@@ -385,7 +401,12 @@ const ModalInfoPersonal = (props) => {
                     id={"Email"}
                     name={"email"}
                     value={infor.email}
-                    onChange={(e) => setInfor({ ...infor, email: e.target.value })}
+                    onChange={(e) => {
+                      setIsValidEmail(validateEmail(e.target.value))
+                      setInfor({ ...infor, email: e.target.value })
+                    }}
+                    onBlur={handleBlurEmail}
+                    ref={inputEmailRef}
                   />
                   <TextInput
                     require
@@ -396,6 +417,7 @@ const ModalInfoPersonal = (props) => {
                     // onChange={(e) => setInfor({ ...infor, phoneNumber: e.target.value })}
                     onChange={handleChangePhoneNumber}
                     onBlur={handleBlur}
+                    ref={inputPhoneNumberRef}
                   />
                   <TextInput
                     require

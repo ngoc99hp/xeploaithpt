@@ -1,21 +1,19 @@
-
-const TextInput = ({
-  value,
-  step,
-  label,
-  isRequire,
-  require,
-  className,
-  type,
-  disable,
-  id,
-  onChange,
-  onBlur,
-  min,
-  max,
-  name
-}) => {
-
+import React, {forwardRef} from 'react'
+const TextInput = forwardRef((props, ref) => {
+  const { value,
+    step,
+    label,
+    isRequire,
+    require,
+    className,
+    type,
+    disable,
+    id,
+    onChange,
+    onBlur,
+    min,
+    max,
+    name } = props
   return (
     <div className={` ${className ? className : ""} w-full relative `}>
       <input
@@ -35,6 +33,7 @@ const TextInput = ({
         min={min}
         max={max}
         name={name}
+        ref={ref}
       />
       <label
         htmlFor={id}
@@ -50,7 +49,7 @@ const TextInput = ({
         )}
       </label>
     </div>
-  );
-};
+  )
+})
 
 export default TextInput
