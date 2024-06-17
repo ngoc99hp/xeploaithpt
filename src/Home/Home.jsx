@@ -8,6 +8,7 @@ import Logo from "../assets/xanhknen.png"
 // import BackgroundImage from './assets/anhnen.png'
 import BackgroundImage2 from "../assets/logo4.jpg"
 import TextInput from "../textInput"
+import NumberInput from "../components/NumberInput"
 
 import { getMajorApi } from "../api/index"
 import { useDispatch} from "react-redux"
@@ -392,7 +393,6 @@ const Home = () => {
             className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[70%] xl:w-[80%] opacity-[97%]"
           >
             <div className="flex flex-col items-center border-solid border-2 border-neutral-300 rounded-lg p-[10px] md:p-[20px] bg-white bg-opacity-90">
-             
               {/* Phương thức đăng ký xét tuyển */}
               <div className="w-full flex flex-col xl:items-center select-none">
                 <h3 className="text-xl sm:text-2xl font-semibold py-[20px] text-center text-primary">

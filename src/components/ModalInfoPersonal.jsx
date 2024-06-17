@@ -291,7 +291,7 @@ const ModalInfoPersonal = (props) => {
     if (tiktok || sv || website || nguoi_than || facebook || cuu_sv || tu_van_hn || khac) {
       await insertDataApi(objects)
         .then(() => {
-          if (question1 && ( question2 || question3 || question4)) {
+          if ((question1 && ( question2 || question3 || question4)) || question1) {
             emailjs
               .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
                 publicKey: 'WPTUFvin3GgXt7m8Y'
