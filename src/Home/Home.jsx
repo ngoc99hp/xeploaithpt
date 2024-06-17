@@ -53,7 +53,7 @@ const Home = () => {
     }
   ]
 
-
+  const numberRegex = /^(\d+(\.\d*)?)?$/
   const backgroundImageUrl = `url(${BackgroundImage2})`
   const dispatch = useDispatch()
   // Chọn xét học bổng
@@ -92,7 +92,6 @@ const Home = () => {
     gdcdhk2: ""
   })
   const [loading, setLoading] = useState(false)
-
   //Danh sách các chuyên ngành
   const [majorData, setMajorData] = useState()
   useEffect(() => {
@@ -387,7 +386,6 @@ const Home = () => {
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-bold text-primary mb-[40px] z-[1]">
             ĐÁNH GIÁ CƠ HỘI TRÚNG TUYỂN 2024
           </h1>
-
           <form
             onSubmit={handleSubmit}
             className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[70%] xl:w-[80%] opacity-[97%]"
@@ -459,109 +457,127 @@ const Home = () => {
                     </h3>
                     {/* Điểm trung bình học kì 1 lớp  */}
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Toán ( vd: 6.9, 10...)"}
                         value={infor.toanhk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, toanhk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, toanhk1: e.target.value })
+                          }
+                        }}
                         id={"add_toanhk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Lý ( vd: 6.9, 10...)"}
                         value={infor.lyhk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, lyhk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, lyhk1: e.target.value })
+                          }
+                        }}
                         id={"add_lyhk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Hoá ( vd: 6.9, 10...)"}
                         value={infor.hoahk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, hoahk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, hoahk1: e.target.value })
+                          }
+                        }}
                         id={"add_hoahk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Sinh ( vd: 6.9, 10...)"}
                         value={infor.sinhhk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, sinhhk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, sinhhk1: e.target.value })
+                          }
+                        }}
                         id={"add_sinhhk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Văn ( vd: 6.9, 10...)"}
                         value={infor.vanhk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, vanhk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, vanhk1: e.target.value })
+                          }
+                        }}
                         id={"add_vanhk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Sử ( vd: 6.9, 10...)"}
                         value={infor.suhk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, suhk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, suhk1: e.target.value })
+                          }
+                        }}
                         id={"add_suhk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Địa ( vd: 6.9, 10...)"}
                         value={infor.diahk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, diahk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, diahk1: e.target.value })
+                          }
+                        }}
                         id={"add_diahk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Tiếng Anh ( vd: 6.9, 10...)"}
                         value={infor.tahk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, tahk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, tahk1: e.target.value })
+                          }
+                        }}
                         id={"add_tahk1"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Giáo dục công dân ( vd: 6.9, 10...)"}
                         value={infor.gdcdhk1}
-                        onChange={(e) =>
-                          setInfor({ ...infor, gdcdhk1: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, gdcdhk1: e.target.value })
+                          }
+                        }}
                         id={"add_gdcdhk1"}
                         min={"0"}
                         max={"10"}
@@ -577,108 +593,127 @@ const Home = () => {
                     </h3>
                     {/* Điểm trung bình học kì 1 lớp  */}
                     <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-[20px]">
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Toán ( vd: 6.9, 10...)"}
                         value={infor.toanhk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, toanhk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, toanhk2: e.target.value })
+                          }
+                        }}
                         id={"add_toanhk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Lý ( vd: 6.9, 10...)"}
                         value={infor.lyhk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, lyhk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, lyhk2: e.target.value })
+                          }
+                        }}
                         id={"add_lyhk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Hoá ( vd: 6.9, 10...)"}
                         value={infor.hoahk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, hoahk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, hoahk2: e.target.value })
+                          }
+                        }}
                         id={"add_hoahk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Sinh ( vd: 6.9, 10...)"}
                         value={infor.sinhhk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, sinhhk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, sinhhk2: e.target.value })
+                          }
+                        }}
                         id={"add_sinhhk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
+                        type={"text"}
                         label={"Văn ( vd: 6.9, 10...)"}
                         value={infor.vanhk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, vanhk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, vanhk2: e.target.value })
+                          }
+                        }}
                         id={"add_vanhk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Sử ( vd: 6.9, 10...)"}
                         value={infor.suhk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, suhk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, suhk2: e.target.value })
+                          }
+                        }}
                         id={"add_suhk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Địa ( vd: 6.9, 10...)"}
                         value={infor.diahk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, diahk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, diahk2: e.target.value })
+                          }
+                        }}
                         id={"add_diahk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Tiếng Anh ( vd: 6.9, 10...)"}
                         value={infor.tahk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, tahk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, tahk2: e.target.value })
+                          }
+                        }}
                         id={"add_tahk2"}
                         min={"0"}
                         max={"10"}
                         require
                       />
-                      <TextInput
+                      <NumberInput
                         type={"text"}
                         label={"Giáo dục công dân ( vd: 6.9, 10...)"}
                         value={infor.gdcdhk2}
-                        onChange={(e) =>
-                          setInfor({ ...infor, gdcdhk2: e.target.value })
-                        }
+                        onChange={(e) => {
+                          if (numberRegex.test(e.target.value)) {
+                            setInfor({ ...infor, gdcdhk2: e.target.value })
+                          }
+                        }}
                         id={"add_gdcdhk2"}
                         min={"0"}
                         max={"10"}

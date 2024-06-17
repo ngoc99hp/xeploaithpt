@@ -10,8 +10,9 @@ import emailjs from '@emailjs/browser'
 
 
 const ModalInfoPersonal = (props) => {
-  const { setIsModalInfoPersonal, dataSelect, isThan75, isThan85 } = props
+  const { setIsModalInfoPersonal, isThan75, isThan85 } = props
   // console.log(dataSelect)
+  const dataSelect = [0, 1, 2]
 
   const question1 = dataSelect.includes(0)
   const question2 = dataSelect.includes(1)
@@ -120,7 +121,6 @@ const ModalInfoPersonal = (props) => {
 
   const idScholarship = scholarshipsList.length > 0 && scholarshipsList.filter(i => i.num === scholarship)[0]
   const validatePhoneNumber = (number) => {
-    // Regular Expression for phone number validation
     const phoneRegex = /^\d{10}$/
     return phoneRegex.test(number)
   }
@@ -129,6 +129,12 @@ const ModalInfoPersonal = (props) => {
     const { value } = event.target
     setInfor({ ...infor, phoneNumber: value })
     setIsValid(validatePhoneNumber(value))
+  }
+
+  const handleBlur = () => {
+    if (!isValid) {
+      alert("Số điện thoại không hợp lệ!")
+    }
   }
 
 
@@ -389,7 +395,7 @@ const ModalInfoPersonal = (props) => {
                     value={infor.phoneNumber}
                     // onChange={(e) => setInfor({ ...infor, phoneNumber: e.target.value })}
                     onChange={handleChangePhoneNumber}
-                    // onBlur={handleBlur}
+                    onBlur={handleBlur}
                   />
                   <TextInput
                     require
