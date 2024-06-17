@@ -131,10 +131,6 @@ const ModalInfoPersonal = (props) => {
     setIsValid(validatePhoneNumber(value))
   }
 
-  // const handleBlur = () => {
-  //   {!isValid && alert('Số điện thoại không hợp lệ!')}
-  //   console.log("blur")
-  // }
 
   const handleCheckBox = (ind) => {
     setDataWhereInfoSchool(
@@ -292,42 +288,47 @@ const ModalInfoPersonal = (props) => {
       major: infoPoint.chuyenNganh,
       scholarship: idScholarship.name
     }
-    await insertDataApi(objects)
-      .then(() => {
-        if (question1 && ( question2 || question3 || question4)) {
-          emailjs
-            .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
-              publicKey: 'WPTUFvin3GgXt7m8Y'
-            })
-            .then(
-              () => {
-                setIsModalNotifiEmail(true)
-              },
-              (error) => {
-                alert("Gửi email thất bại!")
-              }
-            )
-        } else {
-          emailjs
-            .send('service_56ihxl2', 'template_2ffe3wp', objectsEmail, {
-              publicKey: 'WPTUFvin3GgXt7m8Y'
-            })
-            .then(
-              () => {
-                setIsModalNotifiEmail(true)
-              },
-              (error) => {
-                alert("Gửi email thất bại!")
-              }
-            )
+    if (tiktok || sv || website || nguoi_than || facebook || cuu_sv || tu_van_hn || khac) {
+      await insertDataApi(objects)
+        .then(() => {
+          if (question1 && ( question2 || question3 || question4)) {
+            emailjs
+              .send('service_56ihxl2', 'template_x6hxkpg', objectsEmail, {
+                publicKey: 'WPTUFvin3GgXt7m8Y'
+              })
+              .then(
+                () => {
+                  setIsModalNotifiEmail(true)
+                },
+                (error) => {
+                  alert("Gửi email thất bại!")
+                }
+              )
+          } else {
+            emailjs
+              .send('service_56ihxl2', 'template_2ffe3wp', objectsEmail, {
+                publicKey: 'WPTUFvin3GgXt7m8Y'
+              })
+              .then(
+                () => {
+                  setIsModalNotifiEmail(true)
+                },
+                (error) => {
+                  alert("Gửi email thất bại!")
+                }
+              )
+          }
         }
-      }
-      )
-      .then(() => setLoading(false))
-      .catch(() => {
-        setError(true)
-        setLoading(false)
-      })
+        )
+        .then(() => setLoading(false))
+        .catch(() => {
+          setError(true)
+          setLoading(false)
+        })
+    } else {
+      alert("Vui lòng điền đầy đủ thông tin!")
+      setLoading(false)
+    }
   }
   return (
     <>
