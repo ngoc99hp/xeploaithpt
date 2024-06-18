@@ -40,7 +40,7 @@ const Home = () => {
   const dataQuestion = [
     {
       id: 0,
-      name: "Hạnh kiểm trong 3 năm THPT đều đạt loại tốt trở lên"
+      name: "Hạnh kiểm trong 3 năm THPT đều đạt loại tốt"
     },
     {
       id: 1,
