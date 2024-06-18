@@ -1,8 +1,10 @@
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom'
 
 
 const ModalNotifiEmail = (props) => {
   const { setIsModalNotifiEmail } = props
+  const navigate = useNavigate()
 
 
   return (
@@ -52,16 +54,16 @@ const ModalNotifiEmail = (props) => {
               </p>
               {/* <!-- Modal footer --> */}
               <div className="flex items-center justify-center gap-2 px-4 pt-4 border-t border-gray-200 rounded-b">
-                <button onClick={() => setIsModalNotifiEmail(false)} className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                  Thoát
-                </button>
+                <a href="https://zalo.me/0936821821" target="blank" className="text-white bg-[#0083C2] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                  Tìm hiểu thêm
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ModalNotifiEmail;
+export default ModalNotifiEmail

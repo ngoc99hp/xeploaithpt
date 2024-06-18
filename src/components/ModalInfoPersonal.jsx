@@ -303,7 +303,7 @@ const ModalInfoPersonal = (props) => {
       scholarship_id: idScholarship.id
     }
     const objectsEmail = {
-      name: infor.name,
+      name: infor.name.toUpperCase(),
       phone: infor.phoneNumber,
       email: infor.email,
       school: infor.school,

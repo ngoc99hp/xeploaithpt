@@ -14,7 +14,10 @@ import { getMajorApi } from "../api/index"
 import { useDispatch} from "react-redux"
 import { update } from '../redux/infoPointSlice'
 
+
 const Home = () => {
+
+
   const dataHocKi = [
     {
       name: "Học kỳ 1"
@@ -49,7 +52,7 @@ const Home = () => {
     },
     {
       id: 3,
-      name: "Thuộc top 3 học sinh có điểm trung bình học tập năm lớp 12 tại trường THPT"
+      name: "Thuộc top 3 học sinh có điểm trung bình học tập năm lớp 12 cao nhất tại trường THPT"
     }
   ]
 

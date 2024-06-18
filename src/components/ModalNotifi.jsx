@@ -71,18 +71,13 @@ const ModalNotifi = (props) => {
             <div className="p-4 md:p-5">
               {!isError && !isNaN && !isLiet &&
                 <div className="text-base leading-relaxed text-gray-500 text-justify pb-3">
-                  <p>Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>.</p>
-                  <p>Số điểm tổ hợp học bạ lớp 12 của bạn là:</p>
+                  <p>Chúc mừng bạn có cơ hội trúng tuyển vào chuyên ngành <span className='font-bold text-primary'>{infoPoint?.chuyenNganh}</span>.</p>
+                  <p>Số điểm theo tổ hợp học bạ lớp 12 của bạn là:</p>
                 </div>
               }
-              {isError && isLiet &&
+              {(isError || isLiet) &&
                 <p className="text-base leading-relaxed text-gray-500 text-justify pb-3">
-                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
-                </p>
-              }
-              {isError || isLiet &&
-                <p className="text-base leading-relaxed text-gray-500 text-justify pb-3">
-                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
+                  Rất tiếc bạn không đủ điều kiện trúng tuyển vào chuyên ngành <span className='font-bold text-primary'>{infoPoint?.chuyenNganh}</span>. Số điểm tổ hợp học bạ lớp 12 của bạn là:
                 </p>
               }
               {isNaN &&
@@ -93,13 +88,13 @@ const ModalNotifi = (props) => {
               <p className="py-3">Học kỳ 1:</p>
               <div className='flex gap-y-2 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num.map(i => (
-                  <p key={i.tohop} className='font-semibold w-[50%] md:w-[25%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
+                  <p key={i.tohop} className='font-semibold w-[50%] md:w-[25%]'>{i.tohop}: <span className='text-primary'>{i.diem} điểm</span></p>
                 ))}
               </div>
               <p className="py-3">Học kỳ 2:</p>
               <div className='flex gap-y-2 flex-wrap mb-3'>
                 {infoPoint && infoPoint?.num2.map(i => (
-                  <p key={i.tohop} className='font-semibold w-[50%] md:w-[25%]'>{i.tohop}: <span className='text-red-400'>{i.diem} điểm</span></p>
+                  <p key={i.tohop} className='font-semibold w-[50%] md:w-[25%]'>{i.tohop}: <span className='text-primary'>{i.diem} điểm</span></p>
                 ))}
               </div>
               <div>
@@ -109,7 +104,7 @@ const ModalNotifi = (props) => {
                   <div className="my-5">
                     {scholarship15 && !scholarship30 && !scholarship45 && !scholarship60 &&
                       <div className="flex items-center gap-2">
-                        <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">15.000.000</span> đồng từ Nhà trường</p>
+                        <p className="text-base">Bạn có cơ hội nhận được học bổng &quot;Tự hào HPU&quot; trị giá <span className="font-bold text-primary">15.000.000</span></p>
                         <div className="animate-shake">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
                             <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
@@ -122,7 +117,7 @@ const ModalNotifi = (props) => {
                     {
                       ((!scholarship15 && scholarship30 && !scholarship45 && !scholarship60) || (scholarship15 && scholarship30 && !scholarship45 && !scholarship60)) &&
                       <div className="flex items-center gap-2">
-                        <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">30.000.000</span> đồng từ Nhà trường</p>
+                        <p className="text-base">Bạn có cơ hội nhận được học bổng &quot;Tự hào HPU&quot; trị giá <span className="font-bold text-primary">30.000.000</span></p>
                         <div className="animate-shake">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
                             <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
@@ -134,7 +129,7 @@ const ModalNotifi = (props) => {
 
                     {scholarship45 && !scholarship60 &&
                     <div className="flex items-center gap-2">
-                      <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">45.000.000</span> đồng từ Nhà trường</p>
+                      <p className="text-base">Bạn có cơ hội nhận được học bổng &quot;Tự hào HPU&quot; trị giá <span className="font-bold text-primary">45.000.000</span></p>
                       <div className="animate-shake">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
                           <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
@@ -146,7 +141,7 @@ const ModalNotifi = (props) => {
 
                     {scholarship60 &&
                       <div className="flex items-center gap-2">
-                        <p className="text-[18px]">Bạn có cơ hội giành học bổng trị giá <span className="font-bold text-red-400">60.000.000</span> đồng từ Nhà trường</p>
+                        <p className="text-base">Bạn có cơ hội nhận được học bổng &quot;Tự hào HPU&quot; trị giá <span className="font-bold text-primary">60.000.000</span></p>
                         <div className="animate-shake">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 fill-primary">
                             <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
