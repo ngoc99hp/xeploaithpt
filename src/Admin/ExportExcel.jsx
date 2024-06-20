@@ -3,6 +3,7 @@ import ExcelJS from "exceljs"
 import { SiMicrosoftexcel } from 'react-icons/si'
 
 const ExportExcel = ({ students }) => {
+  console.log("ex", students)
   const handleExport = async () => {
     const workbook = new ExcelJS.Workbook()
     const worksheet = workbook.addWorksheet(
@@ -222,7 +223,7 @@ const ExportExcel = ({ students }) => {
       let date = new Date(row.created_at)
 
       // Lấy ngày, tháng, năm
-      let day = date.getDate();
+      let day = date.getDate()
       let month = date.getMonth() + 1 // Tháng bắt đầu từ 0 nên cần cộng thêm 1
       let year = date.getFullYear()
 
@@ -237,9 +238,9 @@ const ExportExcel = ({ students }) => {
         row.school,
         row.method.name,
         row.question1 === null ? '...' : (row.question1 ? 'Có' : 'Không'),
-        row.question1 === null ? '...' : (row.question1 ? 'Có' : 'Không'),
-        row.question1 === null ? '...' : (row.question1 ? 'Có' : 'Không'),
-        row.question1 === null ? '...' : (row.question1 ? 'Có' : 'Không'),
+        row.question2 === null ? '...' : (row.question2 ? 'Có' : 'Không'),
+        row.question3 === null ? '...' : (row.question3 ? 'Có' : 'Không'),
+        row.question4 === null ? '...' : (row.question4 ? 'Có' : 'Không'),
         row.scholarship === null ? '...' : (row.scholarship.name),
         ...hk1.map(item => item.score),
         ...hk2.map(item => item.score),
