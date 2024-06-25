@@ -51,23 +51,18 @@ const Admin = () => {
         .then((res) => res.json())
         .then((res) => {
           // Sắp xếp res.result theo trường created_at từ nhỏ đến lớn
-          res.result.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
-          
+          res.result.sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
           // Set dữ liệu students và setIsFetching(false)
-          setStudents(res.result);
-          setIsFetching(false);
+          setStudents(res.result)
+          setIsFetching(false)
         })
         .catch((error) => {
-          console.error('Error fetching data:', error);
-          setIsFetching(false);
-        });
-    };
-    
-    callApi();
-  }, []);
-  
-
-  console.log(students)
+          console.error('Error fetching data:', error)
+          setIsFetching(false)
+        })
+    }
+    callApi()
+  }, [])
 
   return (
     <div>
