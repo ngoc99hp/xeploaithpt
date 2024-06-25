@@ -3,6 +3,7 @@ import ExcelJS from "exceljs"
 import { SiMicrosoftexcel } from 'react-icons/si'
 
 const ExportExcel = ({ students }) => {
+  console.log("ex", students)
   const handleExport = async () => {
     const workbook = new ExcelJS.Workbook()
     const worksheet = workbook.addWorksheet(
@@ -222,7 +223,7 @@ const ExportExcel = ({ students }) => {
       let date = new Date(row.created_at)
 
       // Lấy ngày, tháng, năm
-      let day = date.getDate();
+      let day = date.getDate()
       let month = date.getMonth() + 1 // Tháng bắt đầu từ 0 nên cần cộng thêm 1
       let year = date.getFullYear()
 
