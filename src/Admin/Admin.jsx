@@ -13,9 +13,30 @@ const Admin = () => {
 
   const isRole = user.publicMetadata.magv === '1234567890'
   const [isFetching, setIsFetching] = useState(false)
+  // useEffect(() => {
+  //   const callApi = async () => {
+  //     setIsFetching(true)
+  //     await fetch(
+  //       `${import.meta.env.VITE_GET_INFO_LIST_STUDENTS}`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           authorization: `Bearer ${await getToken({
+  //             template: import.meta.env.VITE_TEMPLATE_THPT_ADMIN
+  //           })}`
+  //         }
+  //       }
+  //     )
+  //       .then((res) => res.json())
+  //       .then((res) => setStudents(res.result))
+  //       .then((res) => setIsFetching(false))
+  //   }
+  //   callApi()
+  // }, [])
+
   useEffect(() => {
     const callApi = async () => {
-      setIsFetching(true)
+      setIsFetching(true);
       await fetch(
         `${import.meta.env.VITE_GET_INFO_LIST_STUDENTS}`,
         {
@@ -28,11 +49,25 @@ const Admin = () => {
         }
       )
         .then((res) => res.json())
-        .then((res) => setStudents(res.result))
-        .then((res) => setIsFetching(false))
-    }
-    callApi()
-  }, [])
+        .then((res) => {
+          // Sắp xếp res.result theo trường created_at từ nhỏ đến lớn
+          res.result.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+          
+          // Set dữ liệu students và setIsFetching(false)
+          setStudents(res.result);
+          setIsFetching(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setIsFetching(false);
+        });
+    };
+    
+    callApi();
+  }, []);
+  
+
+  console.log(students)
 
   return (
     <div>
